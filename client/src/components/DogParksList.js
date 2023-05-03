@@ -14,7 +14,6 @@ const DogParksList = props => {
             setDogParks(responseBody.parks)
         } catch(err) {
             console.error("Error in fetch",err.message)
-            res.set(500).json( {errors: err.data} )
         }
     }
 
@@ -25,8 +24,8 @@ const DogParksList = props => {
     const parksList = dogParks.map(park => {
         return (
             <>
-            <h3><Link to={`/parks/${park.id}`}> {`${park.name}`}</Link></h3>
-            <p>{`${park.address}`}</p>
+                <Link className="list-link" to={`/parks/${park.id}`}> {`${park.name}`}</Link>
+                <p>{park.address}</p>
             </>
         )
     })

@@ -1,8 +1,8 @@
 import { DogPark } from "../../models/index.js"
 
 class DogParksSeeder {
-    static async seed() {
-
+    static async seed()
+    {
         const dogParks = [{
             name: "Test Park 1",
             description: "This is a place to bring T-posed pups",
