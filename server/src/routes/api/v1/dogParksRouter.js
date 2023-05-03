@@ -10,7 +10,7 @@ dogParksRouter.get("/", async (req, res) => {
         const serializedParks = DogParksSerializer.showDetailsForList(parks)
         res.set({"Content-Type": "application/json"}).status(200).json( {parks: serializedParks} )
     } catch(err) {
-        throw new Error("Error in fetch:", err.message)
+        res.set({"Content-Type": "application/json"}).status(500).json( {errors: err} )
     }
 })
 
