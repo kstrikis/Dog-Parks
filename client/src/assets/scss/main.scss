@@ -8,6 +8,13 @@
   box-sizing: border-box;
 }
 
+$color-lighter-blue:#e8f7fa;
+$color-green-gray:#c8d3cf;
+$color-sage-green:#9cbc9e;
+$color-brighter-green: #5a9a6d;
+$color-darker-green: #434e49;
+$header-font: "Gill Sans";
+
 :root {
   -moz-tab-size: 4;
   tab-size: 4;
@@ -17,17 +24,75 @@
   font-size: 24px;
 }
 
-.grid-container {
-  background-color: #c8d3cf;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: bolder;
-  color: #434e49;
+.sign-in-form {
+  padding: 1rem 1.5em;
+  border-radius: .5rem;
+  background-color: $color-darker-green;
+
+  .sign-in-header {
+    color: $color-lighter-blue;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-family: $header-font;
+    text-align: center
+  }
+
+  label {
+    color: $color-green-gray;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: $header-font
+  }
+
+  .form-input {
+    color: $color-darker-green;
+  }
+
+  input:focus {
+    opacity: .9;
+  }
 }
 
-h1 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.form-field-input {
+  border-radius: 30px;
+  border: none;
+  opacity: .2;
+  transition: all ease .4s;
 }
 
-.button {
-  background-color: #434e49;
+.form-button {
+  border-radius: 30px;
+  border: 1px solid $color-lighter-blue;
+  color: $color-lighter-blue;
+  background-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  padding: 1rem;
+  transition: all ease .4s;
+  
+
+  &:hover {
+    background-color: $color-brighter-green;
+    border-color: $color-brighter-green;
+  }
+}
+
+.sign-in-button-top-nav,
+.sign-up-button-top-nav {
+  color: $color-darker-green;
+  background-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  padding: 1rem;
+  transition: all ease .4s;
+  font-family: $header-font
+}
+
+.top-text-custom {
+  color: $color-darker-green;
+  font-family: $header-font
 }
