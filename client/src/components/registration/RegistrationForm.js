@@ -6,7 +6,9 @@ const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
     email: "",
     password: "",
-    passwordConfirmation: "",
+    passwordConfirmation: "",    
+    userName: "",
+    city: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -15,7 +17,7 @@ const RegistrationForm = () => {
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
+    const { email, password, passwordConfirmation, userName, city } = payload;
     const emailRegexp = config.validation.email.regexp;
     let newErrors = {};
 
@@ -30,6 +32,12 @@ const RegistrationForm = () => {
       newErrors = {
         ...newErrors,
         password: "is required",
+      };
+    }
+    if (userName.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        userName: "is required",
       };
     }
 
@@ -98,8 +106,35 @@ const RegistrationForm = () => {
         <div>
           <label>
             Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
+            <input 
+              type="text" 
+              name="email" 
+              value={userPayload.email} 
+              onChange={onInputChange} />
             <FormError error={errors.email} />
+          </label>
+        </div>
+        <div>
+          <label>
+            User name
+            <input
+              type="text"
+              name="userName"
+              value={userPayload.userName}
+              onChange={onInputChange}
+              />
+              <FormError error={errors.userName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            City
+            <input
+              type="text"
+              name="city"
+              value={userPayload.city}
+              onChange={onInputChange}
+            />
           </label>
         </div>
         <div>
