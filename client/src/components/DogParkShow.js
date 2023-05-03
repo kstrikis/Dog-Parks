@@ -35,9 +35,9 @@ const DogParkShow = (props) => {
 
     return (
         <>
-            <h1>{`${park.name}`}</h1>
-            <p>{`${park.address}`}</p>
-            <p>{`${park.description}`}</p>
+            <h1>{park.name}</h1>
+            <p>{park.address}</p>
+            <p>{park.description}</p>
                 {parkTags}   
             <p>Last Updated: {park.updatedAt}</p>    
         </>

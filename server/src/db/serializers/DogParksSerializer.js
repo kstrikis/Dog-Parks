@@ -11,7 +11,7 @@ class DogParksSerializer {
         return newParks
     }
 
-    static showDetailsForShow(dogPark) {
+    static detailsForShow(dogPark) {
         const allowedAttributes = ["id", "name", "address", "description", "updatedAt"]
 
         let newPark = {}
@@ -34,6 +34,10 @@ class DogParksSerializer {
         }
         if (dogPark.hasBags) {
             newPark.tags.push("Doggie Bags")
+        }
+
+        if(newPark.tags.length === 0){
+            delete newPark.tags
         }
 
         return newPark

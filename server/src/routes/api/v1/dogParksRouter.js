@@ -19,7 +19,7 @@ dogParksRouter.get("/:id", async (req, res) => {
     
     try{
         const park = await DogPark.query().findById(id)
-        const serializedPark = DogParksSerializer.showDetailsForShow(park)
+        const serializedPark = DogParksSerializer.detailsForShow(park)
         return res.status(200).json({ park: serializedPark })
     } catch (err) {
         return res.status(500).json({ errors: err})
