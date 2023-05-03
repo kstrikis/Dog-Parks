@@ -10,6 +10,34 @@ class DogParksSerializer {
         })
         return newParks
     }
-}
+
+    static showDetailsForShow(dogPark) {
+        const allowedAttributes = ["id", "name", "address", "description", "updatedAt"]
+
+        let newPark = {}
+        newPark.tags = []
+        for (const attribute of allowedAttributes) {
+            newPark[attribute] = dogPark[attribute]
+        }
+
+        if (dogPark.hasTrash) {
+            newPark.tags.push("Trash Cans")
+        }
+        if (dogPark.hasBenches) {
+            newPark.tags.push("Benches")
+        }
+        if (dogPark.hasWater) {
+            newPark.tags.push("Water Fountains")
+        }
+        if (dogPark.hasFence) {
+            newPark.tags.push("Fencing")
+        }
+        if (dogPark.hasBags) {
+            newPark.tags.push("Doggie Bags")
+        }
+
+        return newPark
+    }
+}   
 
 export default DogParksSerializer
