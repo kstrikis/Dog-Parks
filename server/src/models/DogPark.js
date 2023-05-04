@@ -22,6 +22,20 @@ class DogPark extends Model {
             }
         })
     }
+
+    static get relationMappings () {
+        const { Review } = require("./index.js")
+        return {
+            reviews: {
+                relation: Model.HasManyRelation,
+                modelClass: Review,
+                join: {
+                    from: "dogParks.id",
+                    to: "reviews.dogParkId"
+                }
+            }
+        }
+    }
 }
 
 module.exports = DogPark

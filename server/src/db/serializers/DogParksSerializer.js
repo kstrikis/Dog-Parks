@@ -1,3 +1,5 @@
+import ReviewSerializer from "./ReviewSerializer.js"
+
 class DogParksSerializer {
 
     static showDetailsForList(dogParksArray) {
@@ -11,8 +13,8 @@ class DogParksSerializer {
         return newParks
     }
 
-    static detailsForShow(dogPark) {
-        const allowedAttributes = ["id", "name", "address", "description", "updatedAt"]
+    static async detailsForShow(dogPark) {
+        const allowedAttributes = ["id", "name", "address", "description", "updatedAt", "reviews"]
 
         let newPark = {}
         newPark.tags = []
@@ -35,6 +37,9 @@ class DogParksSerializer {
         if (dogPark.hasBags) {
             newPark.tags.push("Doggie Bags")
         }
+
+        const parkReviews = await dogPark.$relatedQuery("reviews")
+        newPark.reviews = await ReviewSerializer.showReviewDetails(parkReviews)
 
         return newPark
     }
