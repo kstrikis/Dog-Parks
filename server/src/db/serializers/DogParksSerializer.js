@@ -36,10 +36,6 @@ class DogParksSerializer {
             newPark.tags.push("Doggie Bags")
         }
 
-        if(newPark.tags.length === 0){
-            delete newPark.tags
-        }
-
         return newPark
     }
 }   
