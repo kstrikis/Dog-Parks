@@ -30,7 +30,12 @@ const DogParksList = props => {
         )
     })
     
-    return parksList
+    return (
+        <>
+            {parksList}
+            <Link className="list-link" to="/parks/new">Add a new Dog Park</Link>
+        </>
+    )
 }
 
 export default DogParksList
