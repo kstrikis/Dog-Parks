@@ -11,7 +11,7 @@ const DogParkShow = (props) => {
     const parkId = props.match.params.id
     
     const getPark = async() => {
-        try{
+        try {
             const response = await fetch(`/api/v1/parks/${parkId}`)
             if(!response.ok) {
                 const errorMessage = `${response.status} (${response.statusText})`
