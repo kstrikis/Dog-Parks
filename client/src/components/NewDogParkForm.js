@@ -79,90 +79,90 @@ const NewDogParkForm = props => {
                 <label>
                     Name:
                     <input
-                    type="text"
-                    name="name"
-                    onChange={handleInputChange}
-                    value={newDogPark.name}
+                        type="text"
+                        name="name"
+                        onChange={handleInputChange}
+                        value={newDogPark.name}
                     />
                 </label>
                 
                 <label>
                     Address:
                     <input
-                    type="text"
-                    name="address"
-                    onChange={handleInputChange}
-                    value={newDogPark.address}
+                        type="text"
+                        name="address"
+                        onChange={handleInputChange}
+                        value={newDogPark.address}
                     />
                 </label>
 
                 <label>
                     Description:
                     <input
-                    type="text"
-                    name="description"
-                    onChange={handleInputChange}
-                    value={newDogPark.description}
+                        type="text"
+                        name="description"
+                        onChange={handleInputChange}
+                        value={newDogPark.description}
                     />
                 </label>
 
                 <label>
                     Neighborhood:
                     <input
-                    type="text"
-                    name="neighborhood"
-                    onChange={handleInputChange}
-                    value={newDogPark.neighborhood}
+                        type="text"
+                        name="neighborhood"
+                        onChange={handleInputChange}
+                        value={newDogPark.neighborhood}
                     />
                 </label>
 
                 <label>
                     Has trash cans:
                     <input
-                    type="checkbox"
-                    name="hasTrash"
-                    onChange={handleInputChange}
-                    checked={newDogPark.hasTrash}
+                        type="checkbox"
+                        name="hasTrash"
+                        onChange={handleInputChange}
+                        checked={newDogPark.hasTrash}
                     />
                 </label>
 
                 <label>
                     Has pickup bags:
                     <input
-                    type="checkbox"
-                    name="hasBags"
-                    onChange={handleInputChange}
-                    value={newDogPark.hasBags}
+                        type="checkbox"
+                        name="hasBags"
+                        onChange={handleInputChange}
+                        value={newDogPark.hasBags}
                     />
                 </label>
 
                 <label>
                     Is fenced:
                     <input
-                    type="checkbox"
-                    name="hasFence"
-                    onChange={handleInputChange}
-                    value={newDogPark.hasFence}
+                        type="checkbox"
+                        name="hasFence"
+                        onChange={handleInputChange}
+                        value={newDogPark.hasFence}
                     />
                 </label>
 
                 <label>
                     Has water fountains:
                     <input
-                    type="checkbox"
-                    name="hasWater"
-                    onChange={handleInputChange}
-                    value={newDogPark.hasWater}
+                        type="checkbox"
+                        name="hasWater"
+                        onChange={handleInputChange}
+                        value={newDogPark.hasWater}
                     />
                 </label>
 
                 <label>
                     Has benches:
                     <input
-                    type="checkbox"
-                    name="hasBenches"
-                    onChange={handleInputChange}
-                    value={newDogPark.hasBenches}
+                        type="checkbox"
+                        name="hasBenches"
+                        onChange={handleInputChange}
+                        value={newDogPark.hasBenches}
                     />
                 </label>
 
