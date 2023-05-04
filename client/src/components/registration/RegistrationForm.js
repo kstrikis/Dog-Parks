@@ -6,7 +6,9 @@ const RegistrationForm = () => {
   const [userPayload, setUserPayload] = useState({
     email: "",
     password: "",
-    passwordConfirmation: "",
+    passwordConfirmation: "",    
+    userName: "",
+    city: ""
   });
 
   const [errors, setErrors] = useState({});
@@ -15,7 +17,7 @@ const RegistrationForm = () => {
 
   const validateInput = (payload) => {
     setErrors({});
-    const { email, password, passwordConfirmation } = payload;
+    const { email, password, passwordConfirmation, userName, city } = payload;
     const emailRegexp = config.validation.email.regexp;
     let newErrors = {};
 
@@ -30,6 +32,12 @@ const RegistrationForm = () => {
       newErrors = {
         ...newErrors,
         password: "is required",
+      };
+    }
+    if (userName.trim() == "") {
+      newErrors = {
+        ...newErrors,
+        userName: "is required",
       };
     }
 
@@ -92,20 +100,51 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div className="grid-container">
-      <h1>Register</h1>
+    <div className="sign-in-form">
+      <h3 className="sign-in-header">Register</h3>
       <form onSubmit={onSubmit}>
         <div>
           <label>
             Email
-            <input type="text" name="email" value={userPayload.email} onChange={onInputChange} />
+            <input 
+              className="form-field-input"
+              type="text" 
+              name="email" 
+              value={userPayload.email} 
+              onChange={onInputChange} />
             <FormError error={errors.email} />
+          </label>
+        </div>
+        <div>
+          <label>
+            User Name
+            <input
+              className="form-field-input"
+              type="text"
+              name="userName"
+              value={userPayload.userName}
+              onChange={onInputChange}
+              />
+              <FormError error={errors.userName} />
+          </label>
+        </div>
+        <div>
+          <label>
+            City
+            <input
+              className="form-field-input"
+              type="text"
+              name="city"
+              value={userPayload.city}
+              onChange={onInputChange}
+            />
           </label>
         </div>
         <div>
           <label>
             Password
             <input
+              className="form-field-input"
               type="password"
               name="password"
               value={userPayload.password}
@@ -118,6 +157,7 @@ const RegistrationForm = () => {
           <label>
             Password Confirmation
             <input
+              className="form-field-input"
               type="password"
               name="passwordConfirmation"
               value={userPayload.passwordConfirmation}
@@ -127,7 +167,7 @@ const RegistrationForm = () => {
           </label>
         </div>
         <div>
-          <input type="submit" className="button" value="Register" />
+          <input type="submit" className="form-button" value="Register" />
         </div>
       </form>
     </div>
