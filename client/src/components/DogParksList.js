@@ -23,18 +23,20 @@ const DogParksList = props => {
 
     const parksList = dogParks.map(park => {
         return (
-            <>
+            <div className="callout dog-parks-list-item">
                 <Link className="list-link" to={`/parks/${park.id}`}> {`${park.name}`}</Link>
                 <p>{park.address}</p>
-            </>
+            </div>
         )
     })
     
     return (
-        <>
-            {parksList}
-            <Link className="list-link" to="/parks/new">Add a new Dog Park</Link>
-        </>
+        <div className="dog-parks-index">
+            <div className="dog-parks-list">
+                {parksList}
+            </div>
+            <Link className="add-park-link" to="/parks/new">Add a new Dog Park</Link>
+        </div>
     )
 }
 

@@ -16,23 +16,34 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
-    <li key="sign-out">
       <SignOutButton />
-    </li>,
   ];
+
+  let authenticatedUserName = [
+    <>
+    </>
+  ]
+  if(user) {
+    authenticatedUserName = [
+      <span key="userName" className="sign-in-button-top-nav">
+        {user.userName}
+      </span>
+    ]
+  }
 
   return (
     <div className="top-bar top-text-custom">
       <div className="top-bar-left">
         <ul className="menu top-text-custom">
-          <li className="menu-text top-text-custom">Menu</li>
           <li>
-            <Link to="/" className="top-text-custom">List of Parks</Link>
+            <Link to="/" className="top-text-custom">Home</Link>
           </li>
         </ul>
       </div>
       <div className="top-bar-right">
-        <ul className="menu top-text-custom">{user ? authenticatedListItems : unauthenticatedListItems}</ul>
+        <ul className="menu top-text-custom">
+          {authenticatedUserName}{user ? authenticatedListItems : unauthenticatedListItems}
+        </ul>
       </div>
     </div>
   );
