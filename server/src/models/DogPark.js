@@ -23,7 +23,7 @@ class DogPark extends Model {
         })
     }
 
-    static get relationMappings () {
+    static get relationMappings() {
         const { Review } = require("./index.js")
         return {
             reviews: {

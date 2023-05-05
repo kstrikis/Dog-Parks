@@ -2,7 +2,7 @@ import UserSerializer from "./UserSerializer.js"
 import { User } from "../../models/index.js"
 
 class ReviewSerializer {
-    static async showReviewDetails (reviewsArray) {
+    static async showReviewDetails(reviewsArray) {
         const newReviews = Promise.all( reviewsArray.map(async (review) => {
 
             const userId = review.userId

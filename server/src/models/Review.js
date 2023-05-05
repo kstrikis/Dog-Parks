@@ -9,16 +9,16 @@ class Review extends Model {
             type: "object",
             required: ["reviewText", "rating", "dogParkId", "userId"],
             properties: {
-                reviewText: {type: "string", minLength: 20},
-                rating: {type: ["integer", "string"]},
-                dogParkId: {type: ["integer", "string"]},
-                userId: {type: ["integer", "string"]}
+                reviewText: { type: "string", minLength: 20 },
+                rating: { type: ["integer", "string"] },
+                dogParkId: { type: ["integer", "string"]},
+                userId: { type: ["integer", "string"] }
             }
         }
     }
 
     static get relationMappings() {
-        const {User, DogPark} = require("./index.js") 
+        const { User, DogPark } = require("./index.js") 
         return {
             user: {
                 relation: Model.BelongsToOneRelation,

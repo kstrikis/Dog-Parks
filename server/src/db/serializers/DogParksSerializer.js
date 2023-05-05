@@ -14,7 +14,7 @@ class DogParksSerializer {
     }
 
     static async detailsForShow(dogPark) {
-        const allowedAttributes = ["id", "name", "address", "description", "updatedAt", "reviews"]
+        const allowedAttributes = ["id", "name", "address", "description", "updatedAt"]
 
         let newPark = {}
         newPark.tags = []

@@ -1,5 +1,5 @@
 class UserSerializer {
-    static showUsername (user) {
+    static showUsername(user) {
         return user.userName
     }
 }
