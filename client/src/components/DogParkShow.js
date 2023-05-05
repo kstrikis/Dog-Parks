@@ -28,7 +28,7 @@ const DogParkShow = (props) => {
     }
 
     const parkTags = park.tags.map(tag => {
-        return <p>{tag}</p>
+        return <p className="tag-cloud-individual-tag">{tag}</p>
     })
 
     const reviewsList = park.reviews.map(review => {
@@ -42,15 +42,26 @@ const DogParkShow = (props) => {
     }, [])
 
     return (
-        <>
-            <h1>{park.name}</h1>
-            <p>{park.address}</p>
-            <p>{park.description}</p>
-                {parkTags}   
-            <p>Last Updated: {park.updatedAt}</p>
-            <h3>Review List</h3>
-            {reviewsList} 
-        </>
+        <div className="dog-show-page">
+            <div className="grid-y align-left">
+                <h1>{park.name}</h1>
+                <div className="dog-parks-information">
+                    <p>{park.address}</p>
+                    <p>{park.description}</p>
+                    <p className="date-text">Last Updated: {park.updatedAt}</p>
+                </div>
+                <section className="tag-cloud-section">
+                    <h5 className="tag-cloud-title">Park Amenities</h5>
+                    <div className="tag-cloud">
+                        {parkTags}
+                    </div>
+                </section>
+                <div className="show-page-reviews">
+                    <h3>Review List</h3>
+                    {reviewsList} 
+                </div>
+            </div>
+        </div>
     )
 }
 

@@ -1,7 +1,7 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
-// place global css here
+
 *,
 *::before,
 *::after {
@@ -10,10 +10,19 @@
 
 $color-lighter-blue:#e8f7fa;
 $color-green-gray:#c8d3cf;
+$color-dark-green-gray: #a6bab3;
 $color-sage-green:#9cbc9e;
+$color-dark-sage-green: #7b9674;
 $color-brighter-green: #5a9a6d;
-$color-darker-green: #434e49;
-$header-font: "Gill Sans";
+$color-army-green: #434e49;
+$color-darker-green: #303533;
+$master-font: 'Geneva';
+$light-font-color: white;
+$dark-font-color:$color-darker-green;
+
+body {
+  background-color: $color-green-gray;
+}
 
 :root {
   -moz-tab-size: 4;
@@ -22,6 +31,31 @@ $header-font: "Gill Sans";
 
 .list-link {
   font-size: 24px;
+  color: $dark-font-color;
+  &:hover {
+    color: $dark-font-color;
+  }
+}
+
+.add-park-link {
+  font-size: 24px;
+  border-radius: 30px;
+  border: 1px solid $color-darker-green;
+  color: $dark-font-color;
+  background-color: $color-dark-green-gray;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 4em;
+  align-items: center;
+  transition: all ease .4s;
+
+  &:hover {
+    background-color: $color-brighter-green;
+    border-color: $color-brighter-green;
+    color: $dark-font-color
+  }
 }
 
 .sign-in-form {
@@ -30,24 +64,24 @@ $header-font: "Gill Sans";
   background-color: $color-darker-green;
 
   .sign-in-header {
-    color: $color-lighter-blue;
+    color: $light-font-color;
     text-transform: uppercase;
     margin-bottom: 1rem;
     font-weight: 600;
-    font-family: $header-font;
+    font-family: $master-font;
     text-align: center
   }
 
   label {
-    color: $color-green-gray;
+    color: $light-font-color;
     letter-spacing: 1px;
     font-weight: 600;
     margin-bottom: 1rem;
-    font-family: $header-font
+    font-family: $master-font
   }
 
   .form-input {
-    color: $color-darker-green;
+    color: $dark-font-color;
   }
 
   input:focus {
@@ -64,15 +98,14 @@ $header-font: "Gill Sans";
 
 .form-button {
   border-radius: 30px;
-  border: 1px solid $color-lighter-blue;
-  color: $color-lighter-blue;
+  border: 1px solid white;
+  color: $light-font-color;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
   width: 100%;
   padding: 1rem;
   transition: all ease .4s;
-  
 
   &:hover {
     background-color: $color-brighter-green;
@@ -82,17 +115,104 @@ $header-font: "Gill Sans";
 
 .sign-in-button-top-nav,
 .sign-up-button-top-nav {
-  color: $color-darker-green;
+  color: $dark-font-color;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
-  width: 100%;
+  width: auto;
+  vertical-align: bottom;
   padding: 1rem;
   transition: all ease .4s;
-  font-family: $header-font
+  font-family: $master-font;
+  &:hover {
+    color: $color-brighter-green;
+  }
 }
 
 .top-text-custom {
-  color: $color-darker-green;
-  font-family: $header-font
+  color: $dark-font-color;
+  font-family: $master-font;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase
+}
+
+.top-bar {
+  background: darken($color-green-gray, 25%);
+  ul {
+    background: darken($color-green-gray, 25%);
+  }
+}
+
+.dog-parks-list {
+ width: 30%;
+ text-align: center;
+ background-color: $color-green-gray;
+ margin: 3rem 0rem;
+ font-family: $master-font;
+}
+
+.dog-parks-list-item {
+  &:hover {
+    outline-color: $color-brighter-green;
+    outline-width: 3px;
+    outline-style: solid
+  }
+}
+
+.dog-parks-index {
+  margin: 3em;
+}
+
+.dog-show-page {
+  margin: 3em;
+  color: $dark-font-color;
+  font-family:$master-font
+}
+
+.dog-parks-information {
+  text-indent: 1.5em
+}
+
+$tag-cloud-separator-color: $medium-gray;
+$tag-cloud-section-bg: lighten($color-darker-green, 35%);
+$tag-cloud-section-width: 800px;
+
+.tag-cloud-section {
+  background: $tag-cloud-section-bg;
+  padding: 1rem;
+  max-width: $tag-cloud-section-width;
+  margin: 0;
+  align-content: flex-start;
+}
+
+.tag-cloud-title {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: $light-font-color;
+  border-bottom: 1px solid $tag-cloud-separator-color;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.tag-cloud {
+  margin: 1rem;
+  .tag-cloud-individual-tag {
+    @include label;
+    border-radius: 5000px;
+    background: $color-darker-green;
+    color: $light-font-color;
+    margin: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover {
+      background: darken($color-darker-green, 25%);
+      transition: background-color .2s ease-in;
+    }
+  }
+}
+
+.date-text {
+  font-style: italic;
 }
