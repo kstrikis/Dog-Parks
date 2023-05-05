@@ -16,6 +16,7 @@ const NewDogParkForm = props => {
         hasWater: false,
         hasBenches: false
     }
+    
     const [newDogPark, setNewDogPark] = useState(defaultDogPark)
     const [errors, setErrors] = useState([])
     const [shouldRedirect, setShouldRedirect] = useState(false)

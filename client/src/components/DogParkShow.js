@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
+import ReviewTile from "./ReviewTile"
 
 const DogParkShow = (props) => {
     const [park, setPark] = useState({
         name: "",
         address: "",
         description: "",
-        tags: []
+        tags: [],
+        reviews: []
     })
 
     const parkId = props.match.params.id
@@ -29,6 +31,12 @@ const DogParkShow = (props) => {
         return <p className="tag-cloud-individual-tag">{tag}</p>
     })
 
+    const reviewsList = park.reviews.map(review => {
+        return (
+            <ReviewTile key={review.id} {...review}/>
+        )
+    })
+
     useEffect(() => {
         getPark()
     }, [])
@@ -48,6 +56,10 @@ const DogParkShow = (props) => {
                         {parkTags}
                     </div>
                 </section>
+                <div className="show-page-reviews">
+                    <h3>Review List</h3>
+                    {reviewsList} 
+                </div>
             </div>
         </div>
     )
