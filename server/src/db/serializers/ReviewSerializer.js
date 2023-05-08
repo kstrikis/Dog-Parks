@@ -20,7 +20,6 @@ class ReviewSerializer {
     }
 
     static async serializeReview(review) {
-
         const userId = review.userId
         const user = await User.query().findById(userId)
         const username = UserSerializer.showUsername(user)

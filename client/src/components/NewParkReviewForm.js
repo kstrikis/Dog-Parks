@@ -20,7 +20,6 @@ const NewParkReviewForm = (props) => {
                 }),
                 body: JSON.stringify( {review: newReview} )
             })
-            const responseBody = await response.json()
             if (!response.ok) {
                 if (response.status === 422) {
                     const errorBody = await response.json()
@@ -31,11 +30,13 @@ const NewParkReviewForm = (props) => {
                     throw new Error(errorMessage)
                 }
             }
-            const newPark = {...props.park}
-            newPark.reviews.push(responseBody.review)
-            props.setPark(newPark)
-        } catch(err) {
-            console.error("Error in fetch", err.message)
+            const responseBody = await response.json()
+            props.setPark({
+                ...props.park,
+                reviews: [...props.park.reviews, responseBody.review]
+            })
+        } catch(error) {
+            console.error("Error in fetch", error.message)
         }
     }
 
