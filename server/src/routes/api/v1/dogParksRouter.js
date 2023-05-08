@@ -1,18 +1,20 @@
 import express from "express"
-import { DogPark, Review } from "../../../models/index.js"
+import { DogPark } from "../../../models/index.js"
 import { ValidationError } from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import DogParksSerializer from "../../../db/serializers/DogParksSerializer.js"
+import parksReviewRouter from "./parksReviewRouter.js"
 
 const dogParksRouter = new express.Router()
+dogParksRouter.use("/:id/reviews", parksReviewRouter)
 
 dogParksRouter.get("/", async (req, res) => {
     try {
         const parks = await DogPark.query()
         const serializedParks = DogParksSerializer.showDetailsForList(parks)
-        res.set({"Content-Type": "application/json"}).status(200).json( {parks: serializedParks} )
+        res.status(200).json( {parks: serializedParks} )
     } catch(err) {
-        res.set({"Content-Type": "application/json"}).status(500).json( {errors: err} )
+        res.status(500).json( {errors: err} )
     }
 })
 
@@ -24,16 +26,15 @@ dogParksRouter.post("/", async (req, res) => {
         res.set({"Content-Type": "application/json"}).status(201).json({ park: park })
     } catch(err) {
         if (err instanceof ValidationError) {
-            res.set({"Content-Type": "application/json"}).status(422).json({ errors: err.data })
+            res.status(422).json({ errors: err.data })
         } else {
-            res.set({"Content-Type": "application/json"}).status(500).json({ errors: err })
+            res.status(500).json({ errors: err })
         }
     }
 })
 
 dogParksRouter.get("/:id", async (req, res) => {
     const { id } = req.params
-    
     try{
         const park = await DogPark.query().findById(id)
         const serializedPark = await DogParksSerializer.detailsForShow(park)

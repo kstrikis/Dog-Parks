@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
 import ReviewTile from "./ReviewTile"
+import NewParkReviewForm from "./NewParkReviewForm"
 
 const DogParkShow = (props) => {
     const [park, setPark] = useState({
@@ -86,14 +87,14 @@ const DogParkShow = (props) => {
                 <div className="dog-parks-information">
                     <p>{park.address}</p>
                     <p>{park.description}</p>
+                </div>
+                <div className="tag-cloud">
+                    {parkTags}
+                </div>
+                <div className="dog-parks-information">
                     <p className="date-text">Last Updated: {park.updatedAt}</p>
                 </div>
-                <section className="tag-cloud-section">
-                    <h5 className="tag-cloud-title">Park Amenities</h5>
-                    <div className="tag-cloud">
-                        {parkTags}
-                    </div>
-                </section>
+                    <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
                 <div className="show-page-reviews">
                     <h3>Review List</h3>
                     {reviewsList} 

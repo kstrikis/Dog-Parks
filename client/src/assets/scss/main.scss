@@ -16,6 +16,7 @@ $color-dark-sage-green: #7b9674;
 $color-brighter-green: #5a9a6d;
 $color-army-green: #434e49;
 $color-darker-green: #303533;
+$color-lightened-darker-green: lighten($color-darker-green, 35%);
 $master-font: 'Geneva';
 $light-font-color: white;
 $dark-font-color:$color-darker-green;
@@ -80,10 +81,6 @@ body {
     font-family: $master-font
   }
 
-  .form-input {
-    color: $dark-font-color;
-  }
-
   input:focus {
     opacity: .9;
   }
@@ -92,8 +89,12 @@ body {
 .form-field-input {
   border-radius: 30px;
   border: none;
-  opacity: .2;
+  opacity: .4;
   transition: all ease .4s;
+}
+
+.form-input {
+  color: $dark-font-color;
 }
 
 .form-button {
@@ -174,27 +175,6 @@ body {
   text-indent: 1.5em
 }
 
-$tag-cloud-separator-color: $medium-gray;
-$tag-cloud-section-bg: lighten($color-darker-green, 35%);
-$tag-cloud-section-width: 800px;
-
-.tag-cloud-section {
-  background: $tag-cloud-section-bg;
-  padding: 1rem;
-  max-width: $tag-cloud-section-width;
-  margin: 0;
-  align-content: flex-start;
-}
-
-.tag-cloud-title {
-  text-transform: uppercase;
-  font-weight: bold;
-  color: $light-font-color;
-  border-bottom: 1px solid $tag-cloud-separator-color;
-  padding: 1rem 0;
-  margin-bottom: 1rem;
-}
-
 .tag-cloud {
   margin: 1rem;
   .tag-cloud-individual-tag {
@@ -215,4 +195,32 @@ $tag-cloud-section-width: 800px;
 
 .date-text {
   font-style: italic;
+}
+
+.dark-text{
+  color: $color-darker-green;
+  font-family: $master-font;
+}
+
+.review-form {
+  padding: 1rem 1.5em;
+  border-radius: .5rem;
+  background-color: $color-lightened-darker-green;
+
+  .review-header {
+    color: $light-font-color;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-family: $master-font;
+    text-align: center
+  }
+
+  input:focus {
+    opacity: .9;
+  }
+}
+
+.left-margin {
+  margin-left: 10px;
 }
