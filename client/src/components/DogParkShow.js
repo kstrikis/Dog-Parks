@@ -62,21 +62,27 @@ const DogParkShow = (props) => {
         deletePark()
     }
 
-    if(shouldRedirect) {
+    if (shouldRedirect) {
         return <Redirect push to="/" />
     } 
 
+    let classHide = "hide"
     let isAdmin = false
-    if(props.user) {
+    if (props.user) {
         isAdmin = props.user.isAdmin
+        if (isAdmin) {
+            classHide = ""
+        }
     }
     const message = "Delete this dog park"
 
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
-                <h1>{park.name}</h1>
-                <a onClick={handleOnClickDelete} href="#" className="help-text">{isAdmin && message}</a>
+                <div className="title-group">
+                    <h1>{park.name}</h1>
+                    <button onClick={handleOnClickDelete} className={`button ${classHide}`}>{isAdmin && message}</button>
+                </div>
                 <div className="dog-parks-information">
                     <p>{park.address}</p>
                     <p>{park.description}</p>

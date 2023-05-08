@@ -49,10 +49,6 @@ dogParksRouter.delete("/:id", async (req, res) => {
     try {
         const park = await DogPark.query().findById(id)
         const serializedPark = DogParksSerializer.detailsForShow(park)
-        const parkReviews = await park.$relatedQuery("reviews")
-        Promise.all(parkReviews.map( async(review) => {
-            await Review.query().deleteById(review.id)
-        }))
         await DogPark.query().deleteById(id)
         return res.status(200).json({ park: serializedPark })
     } catch (err) {
