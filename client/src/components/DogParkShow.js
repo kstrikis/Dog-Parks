@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
+import ReviewTile from "./ReviewTile"
 
 const DogParkShow = (props) => {
     const [park, setPark] = useState({
         name: "",
         address: "",
         description: "",
-        tags: []
+        tags: [],
+        reviews: []
     })
     const [shouldRedirect, setShouldRedirect] = useState(false)
 
@@ -29,6 +31,12 @@ const DogParkShow = (props) => {
 
     const parkTags = park.tags.map(tag => {
         return <p className="tag-cloud-individual-tag">{tag}</p>
+    })
+
+    const reviewsList = park.reviews.map(review => {
+        return (
+            <ReviewTile key={review.id} {...review}/>
+        )
     })
 
     useEffect(() => {
@@ -80,6 +88,10 @@ const DogParkShow = (props) => {
                         {parkTags}
                     </div>
                 </section>
+                <div className="show-page-reviews">
+                    <h3>Review List</h3>
+                    {reviewsList} 
+                </div>
             </div>
         </div>
     )
