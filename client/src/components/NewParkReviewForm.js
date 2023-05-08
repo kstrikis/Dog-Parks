@@ -13,7 +13,7 @@ const NewParkReviewForm = (props) => {
 
     const postNewParkReview = async () => {
         try {
-            const response = await fetch(`/api/v1/parks/${parkId}`, {
+            const response = await fetch(`/api/v1/parks/${parkId}/reviews`, {
                 method: "POST",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -21,7 +21,6 @@ const NewParkReviewForm = (props) => {
                 body: JSON.stringify( {review: newReview} )
             })
             const responseBody = await response.json()
-            props.setPark(responseBody.park)
             if (!response.ok) {
                 if (response.status === 422) {
                     const errorBody = await response.json()
@@ -32,6 +31,9 @@ const NewParkReviewForm = (props) => {
                     throw new Error(errorMessage)
                 }
             }
+            const newPark = {...props.park}
+            newPark.reviews.push(responseBody.review)
+            props.setPark(newPark)
         } catch(err) {
             console.error("Error in fetch", err.message)
         }

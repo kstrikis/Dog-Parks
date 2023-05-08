@@ -56,9 +56,7 @@ const DogParkShow = (props) => {
                 <div className="dog-parks-information">
                     <p className="date-text">Last Updated: {park.updatedAt}</p>
                 </div>
-                <div>
-                    <NewParkReviewForm parkId={parkId} setPark={setPark}/>
-                </div>
+                    <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
                 <div className="show-page-reviews">
                     <h3>Review List</h3>
                     {reviewsList} 
