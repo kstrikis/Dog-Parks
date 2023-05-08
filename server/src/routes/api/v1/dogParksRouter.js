@@ -47,10 +47,8 @@ dogParksRouter.delete("/:id", async (req, res) => {
     const { id } = req.params
     
     try {
-        const park = await DogPark.query().findById(id)
-        const serializedPark = DogParksSerializer.detailsForShow(park)
         await DogPark.query().deleteById(id)
-        return res.status(200).json({ park: serializedPark })
+        return res.status(200).json({ message: "Dog park successfully deleted" })
     } catch (err) {
         return res.status(500).json({ errors: err })
     }

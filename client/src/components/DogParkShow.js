@@ -66,13 +66,13 @@ const DogParkShow = (props) => {
         return <Redirect push to="/" />
     } 
 
-    let classHide = "hide"
     let isAdmin = false
     if (props.user) {
         isAdmin = props.user.isAdmin
-        if (isAdmin) {
-            classHide = ""
-        }
+    }
+    let classHide = "hide"
+    if (isAdmin) {
+        classHide = ""
     }
     const message = "Delete this dog park"
 
