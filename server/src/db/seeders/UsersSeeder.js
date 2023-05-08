@@ -20,6 +20,13 @@ class UsersSeeder {
             userName: "kriss",
             city: "Cambridge",
             cryptedPassword: "$2b$10$NMZ0xvCY36bUiK1iARY4duS0QsdJ4hnzgn.KYb3xz8ge.IaBow8li",
+        },
+        {
+            email:"admin@example.com",
+            userName: "admin",
+            city: "Boston",
+            cryptedPassword: "$2b$10$dTI6XoH6Q28hjl3AlaoOmOlo/Gcln0/Bstae.HYMG1mBSrmKU.c/a",
+            isAdmin: true
         }]
         for (const user of users) {
             const inDB = await User.query().findOne( {userName: user.userName} )

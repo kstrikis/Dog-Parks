@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Redirect } from "react-router-dom"
 import ReviewTile from "./ReviewTile"
 import NewParkReviewForm from "./NewParkReviewForm"
 
@@ -10,6 +11,7 @@ const DogParkShow = (props) => {
         tags: [],
         reviews: []
     })
+    const [shouldRedirect, setShouldRedirect] = useState(false)
 
     const parkId = props.match.params.id
     
@@ -42,10 +44,46 @@ const DogParkShow = (props) => {
         getPark()
     }, [])
 
+    const deletePark = async () => {
+        try {
+            const response = await fetch(`/api/v1/parks/${parkId}`, { method: "DELETE"})
+            if(!response.ok) {
+                const errorMessage = `${response.status} (${response.statusText})`
+                const error = new Error(errorMessage)
+                throw error
+            }
+            setShouldRedirect(true)
+        } catch (err) {
+            console.error(`Error in fetch: ${err.message}`)
+        }
+    }
+
+    const handleOnClickDelete = (event) => {
+        event.preventDefault()
+        deletePark()
+    }
+
+    if (shouldRedirect) {
+        return <Redirect push to="/" />
+    } 
+
+    let isAdmin = false
+    if (props.user) {
+        isAdmin = props.user.isAdmin
+    }
+    let classHide = "hide"
+    if (isAdmin) {
+        classHide = ""
+    }
+    const message = "Delete this dog park"
+
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
-                <h1>{park.name}</h1>
+                <div className="title-group">
+                    <h1>{park.name}</h1>
+                    <button onClick={handleOnClickDelete} className={`button ${classHide}`}>{isAdmin && message}</button>
+                </div>
                 <div className="dog-parks-information">
                     <p>{park.address}</p>
                     <p>{park.description}</p>
