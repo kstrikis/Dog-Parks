@@ -1,6 +1,5 @@
 import express from "express"
 import { DogPark } from "../../../models/index.js"
-import objection from "objection"
 import { ValidationError } from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import DogParksSerializer from "../../../db/serializers/DogParksSerializer.js"
@@ -47,12 +46,12 @@ dogParksRouter.get("/:id", async (req, res) => {
 dogParksRouter.delete("/:id", async (req, res) => {
     const { id } = req.params
     
-    try{
+    try {
         const park = await DogPark.query().deleteById(id)
         const serializedPark = DogParksSerializer.detailsForShow(park)
         return res.status(200).json({ park: serializedPark })
     } catch (err) {
-        return res.status(500).json({ errors: err})
+        return res.status(500).json({ errors: err })
     }
 })
 

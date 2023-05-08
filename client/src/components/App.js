@@ -28,7 +28,7 @@ const App = (props) => {
 
   return (
     <Router>
-       <TopBar user={currentUser} />
+      <TopBar user={currentUser} />
       <Switch>
         <Route exact path="/" component={DogParksList} />
         <Route exact path="/parks" component={DogParksList} />
