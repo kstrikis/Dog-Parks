@@ -38,19 +38,11 @@ const NewParkReviewForm = (props) => {
     }
 
     const handleInputChange = event => {
-        if(event.currentTarget.type === "integer"){
             setNewReview({
                 ...newReview,
                 [event.currentTarget.name]: event.currentTarget.value
             })
         }
-        if(event.currentTarget.type === "text"){
-            setNewReview({
-                ...newReview,
-                [event.currentTarget.name]: event.currentTarget.value
-            })
-        }
-    }
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -59,10 +51,7 @@ const NewParkReviewForm = (props) => {
     }
 
     const clearForm = () => {
-        setNewReview({
-            rating: "",
-            reviewText: ""
-        })
+        setNewReview(defaultReview)
     }
 
     return (
