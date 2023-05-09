@@ -31,7 +31,7 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/" component={DogParksList} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/home" component={Home} />
         <Route exact path="/parks" component={DogParksList} />
         <Route exact path="/parks/new" component={NewDogParkForm} />
