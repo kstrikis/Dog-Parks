@@ -225,8 +225,16 @@ body {
   }
 }
 
+.unchecked {
+  color: $color-green-gray
+}
+
 .left-margin {
   margin-left: 10px;
+}
+
+.right-margin-smaller {
+  margin-right: 5px
 }
 
 .right-margin {
