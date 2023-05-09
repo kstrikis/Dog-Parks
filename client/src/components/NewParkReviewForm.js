@@ -59,10 +59,10 @@ const NewParkReviewForm = (props) => {
 
     return (
         <div className="review-form">
-            <h1 className="list-link">Add a New Review</h1>
+            <h1 className="list-link form-header-text">Add a New Review</h1>
             <ErrorList errors={errors}/>
             <form onSubmit={handleSubmit} >
-                <label className="dark-text">
+                <label className="dark-text bold-text">
                     Rating:
                     <input
                         className="form-field-input left-margin"
@@ -72,7 +72,7 @@ const NewParkReviewForm = (props) => {
                         value={newReview.rating}
                     />
                 </label>              
-                <label className="dark-text">
+                <label className="dark-text bold-text">
                     Review:
                     <input
                         className="form-field-input"
@@ -82,7 +82,7 @@ const NewParkReviewForm = (props) => {
                         value={newReview.reviewText}
                     />
                 </label>
-                <input className="form-button" type="submit" value="Submit" />
+                <input className="form-button-dark" type="submit" value="Submit" />
             </form>
         </div>
     )
