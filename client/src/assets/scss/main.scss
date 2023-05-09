@@ -12,11 +12,11 @@ $color-lighter-blue:#e8f7fa;
 $color-green-gray:#c8d3cf;
 $color-dark-green-gray: #a6bab3;
 $color-sage-green:#9cbc9e;
-$color-dark-sage-green: #7b9674;
+$color-dark-sage-green: #7c8f77;
 $color-brighter-green: #5a9a6d;
 $color-army-green: #434e49;
-$color-darker-green: #303533;
-$color-lightened-darker-green: lighten($color-darker-green, 35%);
+$color-darker-green: #1f2120;
+$color-lightened-darker-green: lighten($color-army-green, 35%);
 $master-font: 'Geneva';
 $light-font-color: white;
 $dark-font-color:$color-darker-green;
@@ -62,7 +62,7 @@ body {
 .sign-in-form {
   padding: 1rem 1.5em;
   border-radius: .5rem;
-  background-color: $color-darker-green;
+  background-color: $color-army-green;
 
   .sign-in-header {
     color: $light-font-color;
@@ -99,8 +99,9 @@ body {
 
 .form-button {
   border-radius: 30px;
-  border: 1px solid white;
+  border: 2px solid white;
   color: $light-font-color;
+  font-weight: bolder;
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -135,7 +136,10 @@ body {
   font-family: $master-font;
   font-size: 20px;
   font-weight: bold;
-  text-transform: uppercase
+  text-transform: uppercase;
+  &:hover {
+    color: $light-font-color;
+  }
 }
 
 .top-bar {
@@ -146,11 +150,11 @@ body {
 }
 
 .dog-parks-list {
- width: 30%;
- text-align: center;
- background-color: $color-green-gray;
- margin: 3rem 0rem;
- font-family: $master-font;
+  width: 30%;
+  text-align: center;
+  background-color: $color-green-gray;
+  margin: 3rem 0rem;
+  font-family: $master-font;
 }
 
 .dog-parks-list-item {
@@ -203,8 +207,8 @@ body {
 }
 
 .review-form {
-  padding: 1rem 1.5em;
-  border-radius: .5rem;
+  padding: 1.5rem 1.5em;
+  border-radius: 1rem;
   background-color: $color-lightened-darker-green;
 
   .review-header {
@@ -223,4 +227,60 @@ body {
 
 .left-margin {
   margin-left: 10px;
+}
+
+.bold-text {
+  font-weight: bolder;
+}
+
+.form-header-text {
+  font-family:$master-font;
+  font-weight: bolder;
+  color: $dark-font-color
+}
+
+.new-park-form {
+  padding: 1rem 1.5em;
+  border-radius: .5rem;
+  background-color: $color-dark-green-gray;
+  border-color:$color-green-gray;
+  border-radius: 30px;
+
+  .new-park-header {
+    color: $dark-font-color;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-family: $master-font;
+    text-align: center
+  }
+
+  label {
+    color: $dark-font-color;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: $master-font
+  }
+
+  input:focus {
+    opacity: .9;
+  }
+}
+
+.form-button-dark {
+  border-radius: 30px;
+  border: 2px solid $dark-font-color;
+  color: $dark-font-color;
+  font-weight: bolder;
+  background-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+  padding: 1rem;
+  transition: all ease .4s;
+
+  &:hover {
+    background-color: $color-brighter-green;
+    border-color: $color-brighter-green;
+  }
 }
