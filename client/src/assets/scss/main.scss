@@ -225,8 +225,27 @@ body {
   }
 }
 
+.same-line {
+  display: inline-flex
+}
+
+.home-page-icon {
+  font-size: 50px;
+  margin: 7px;
+}
+
 .left-margin {
   margin-left: 10px;
+}
+
+.right-margin {
+  margin-right: 10px;
+}
+
+.home-text {
+  text-align: center;
+  color: $dark-font-color;
+  font-family: $master-font;
 }
 
 .bold-text {
