@@ -35,7 +35,7 @@ dogParksRouter.post("/", async (req, res) => {
 
 dogParksRouter.get("/:id/edit", async (req, res) => {
     const { id } = req.params
-    try{
+    try {
         const park = await DogPark.query().findById(id)
         const serializedPark = await DogParksSerializer.detailsForEdit(park)
         return res.status(200).json({ park: serializedPark })
@@ -46,7 +46,7 @@ dogParksRouter.get("/:id/edit", async (req, res) => {
 
 dogParksRouter.get("/:id", async (req, res) => {
     const { id } = req.params
-    try{
+    try {
         const park = await DogPark.query().findById(id)
         const serializedPark = await DogParksSerializer.detailsForShow(park)
         return res.status(200).json({ park: serializedPark })
