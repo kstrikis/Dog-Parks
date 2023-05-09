@@ -16,8 +16,10 @@ const DogParkShow = (props) => {
     const parkId = props.match.params.id
 
     let isAdmin = false
+    let classHideSignedOutUser = "hide"
     if (props.user) {
         isAdmin = props.user.isAdmin
+        classHideSignedOutUser = ""
     }
     
     const getPark = async() => {
@@ -111,9 +113,9 @@ const DogParkShow = (props) => {
         return <Redirect push to="/" />
     } 
 
-    let classHide = "hide"
+    let classHideNotAdmin = "hide"
     if (isAdmin) {
-        classHide = ""
+        classHideNotAdmin = ""
     }
     const message = "Delete this dog park"
 
@@ -122,7 +124,7 @@ const DogParkShow = (props) => {
             <div className="grid-y align-left">
                 <div className="title-group">
                     <h1>{park.name}</h1>
-                    <button onClick={handleOnClickDeletePark} className={`button ${classHide}`}>{isAdmin && message}</button>
+                    <button onClick={handleOnClickDeletePark} className={`button ${classHideNotAdmin}`}>{isAdmin && message}</button>
                 </div>
                 <div className="dog-parks-information">
                     <p>{park.address}</p>
@@ -134,7 +136,9 @@ const DogParkShow = (props) => {
                 <div className="dog-parks-information">
                     <p className="date-text">Last Updated: {park.updatedAt}</p>
                 </div>
+                <div className={classHideSignedOutUser}>
                     <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
+                </div>
                 <div className="show-page-reviews">
                     <h3>Review List</h3>
                     {reviewsList} 
