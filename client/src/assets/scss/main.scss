@@ -240,6 +240,7 @@ body {
 }
 
 .new-park-form {
+  @include grid-row();
   padding: 1rem 1.5em;
   border-radius: .5rem;
   background-color: $color-dark-green-gray;
