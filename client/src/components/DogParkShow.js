@@ -71,18 +71,23 @@ const DogParkShow = (props) => {
     if (props.user) {
         isAdmin = props.user.isAdmin
     }
-    let classHide = "hide"
+    let classHideNotAdmin = "hide"
     if (isAdmin) {
-        classHide = ""
+        classHideNotAdmin = ""
     }
     const message = "Delete this dog park"
+
+    let classHideSignedOutUser = "hide"
+    if (props.user) {
+        classHideSignedOutUser = ""
+    }
 
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
                 <div className="title-group">
                     <h1>{park.name}</h1>
-                    <button onClick={handleOnClickDelete} className={`button ${classHide}`}>{isAdmin && message}</button>
+                    <button onClick={handleOnClickDelete} className={`button ${classHideNotAdmin}`}>{isAdmin && message}</button>
                 </div>
                 <div className="dog-parks-information">
                     <p>{park.address}</p>
@@ -94,7 +99,9 @@ const DogParkShow = (props) => {
                 <div className="dog-parks-information">
                     <p className="date-text">Last Updated: {park.updatedAt}</p>
                 </div>
+                <div className={classHideSignedOutUser}>
                     <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
+                </div>
                 <div className="show-page-reviews">
                     <h3>Review List</h3>
                     {reviewsList} 
