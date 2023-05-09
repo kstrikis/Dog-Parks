@@ -43,7 +43,7 @@ const DogParkShow = (props) => {
 
     const deleteReview = async (reviewId) => {
         try {
-            const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, { method: "DELETE"})
+            const response = await fetch(`/api/v1/reviews/${reviewId}`, { method: "DELETE"})
             if(!response.ok) {
                 const errorMessage = `${response.status} (${response.statusText})`
                 const error = new Error(errorMessage)
@@ -64,25 +64,10 @@ const DogParkShow = (props) => {
     }
 
     const reviewsList = park.reviews.map(review => {
-        let userId = null
-        if (props.user) {
-            userId = props.user.id
-        }
-        let deleteButton = ""
-        if (isAdmin || review.userId === userId) {
-            deleteButton =
-                <button
-                    className="button"
-                    onClick={(event) => {
-                    handleOnClickDeleteReview(event, review.id)}}>
-                        Delete review
-                </button>
-        }
+        const currentUser = props.user
+
         return (
-            <>
-                <ReviewTile key={review.id} {...review}/>
-                {deleteButton}
-            </>
+            <ReviewTile key={review.id} {...review} currentUser={currentUser} isAdmin={isAdmin} handleOnClickDeleteReview={handleOnClickDeleteReview}/>
         )
     })
 
