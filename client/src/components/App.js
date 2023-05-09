@@ -10,6 +10,7 @@ import TopBar from "./layout/TopBar";
 import DogParksList from "./DogParksList";
 import DogParkShow from "./DogParkShow";
 import NewDogParkForm from "./NewDogParkForm";
+import EditDogParkForm from "./EditDogParkForm";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -33,6 +34,7 @@ const App = (props) => {
         <Route exact path="/" component={DogParksList} />
         <Route exact path="/parks" component={DogParksList} />
         <Route exact path="/parks/new" component={NewDogParkForm} />
+        <Route exact path="/parks/:id/edit" render={(props) => <EditDogParkForm {...props} user={currentUser} />} />
         <Route exact path="/parks/:id" render={(props) => <DogParkShow {...props} user={currentUser} />} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />

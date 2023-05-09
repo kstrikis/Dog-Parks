@@ -1,10 +1,13 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import ErrorList from "./layout/ErrorList"
 import { Redirect } from "react-router-dom"
 
-const NewDogParkForm = props => {
+const EditDogParkForm = props => {
 
+    const parkId = props.match.params.id
+
+    
     const defaultDogPark = {
         name: "",
         description: "",
@@ -17,18 +20,37 @@ const NewDogParkForm = props => {
         hasBenches: false
     }
     
-    const [newDogPark, setNewDogPark] = useState(defaultDogPark)
+    const [editedDogPark, setEditedDogPark] = useState(defaultDogPark)
     const [errors, setErrors] = useState([])
     const [shouldRedirect, setShouldRedirect] = useState(false)
 
-    const postNewDogPark = async () => {
+    const getExistingParkData = async (parkId) => {
         try {
-            const response = await fetch("/api/v1/parks", {
-                method: "POST",
+            const response = await fetch(`/api/v1/parks/${parkId}/edit`)
+            if(!response.ok) {
+                const errorMessage = `${response.status} (${response.statusText})`
+                const error = new Error(errorMessage)
+                throw error
+            }
+            const body = await response.json()
+            setEditedDogPark(body.park)
+        } catch (err) {
+            console.error(`Error in fetch: ${err.message}`)
+        }
+    }
+
+    useEffect(() => {
+        getExistingParkData(parkId)
+    }, [])
+
+    const postEditedDogPark = async () => {
+        try {
+            const response = await patch("/api/v1/parks", {
+                method: "PATCH",
                 headers: new Headers({
                     "Content-Type": "application/json"
                 }),
-                body: JSON.stringify( {park: newDogPark} )
+                body: JSON.stringify( {park: editedDogPark} )
             })
             if (!response.ok) {
                 if (response.status === 422) {
@@ -49,14 +71,14 @@ const NewDogParkForm = props => {
     
     const handleInputChange = event => {
         if(event.currentTarget.type === "checkbox"){
-            setNewDogPark({
-                ...newDogPark,
+            setEditedDogPark({
+                ...editedDogPark,
                 [event.currentTarget.name]: event.currentTarget.checked
             })
         }
         if(event.currentTarget.type === "text"){
-            setNewDogPark({
-                ...newDogPark,
+            setEditedDogPark({
+                ...editedDogPark,
                 [event.currentTarget.name]: event.currentTarget.value
             })
         }
@@ -64,7 +86,7 @@ const NewDogParkForm = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        postNewDogPark()
+        postEditedDogPark()
     }
 
     if(shouldRedirect) {
@@ -73,7 +95,7 @@ const NewDogParkForm = props => {
 
     return (
         <div className="new-park-form">
-            <h1 className="new-park-header">Add a New Dog Park</h1>
+            <h1 className="new-park-header">Edit a Dog Park</h1>
             <ErrorList errors={errors}/>
             <form onSubmit={handleSubmit} >
                 <label className="dark-text bold-text">
@@ -83,7 +105,7 @@ const NewDogParkForm = props => {
                         type="text"
                         name="name"
                         onChange={handleInputChange}
-                        value={newDogPark.name}
+                        value={editedDogPark.name}
                     />
                 </label> 
                 <label className="dark-text bold-text">
@@ -93,7 +115,7 @@ const NewDogParkForm = props => {
                         type="text"
                         name="address"
                         onChange={handleInputChange}
-                        value={newDogPark.address}
+                        value={editedDogPark.address}
                     />
                 </label>
                 <label className="dark-text bold-text">
@@ -103,7 +125,7 @@ const NewDogParkForm = props => {
                         type="text"
                         name="description"
                         onChange={handleInputChange}
-                        value={newDogPark.description}
+                        value={editedDogPark.description}
                     />
                 </label>
                 <label className="dark-text bold-text">
@@ -113,7 +135,7 @@ const NewDogParkForm = props => {
                         type="text"
                         name="neighborhood"
                         onChange={handleInputChange}
-                        value={newDogPark.neighborhood}
+                        value={editedDogPark.neighborhood}
                     />
                 </label>
                 <label className="dark-text bold-text">
@@ -123,7 +145,7 @@ const NewDogParkForm = props => {
                         type="checkbox"
                         name="hasTrash"
                         onChange={handleInputChange}
-                        checked={newDogPark.hasTrash}
+                        checked={editedDogPark.hasTrash}
                     />
                 </label>
                 <label className="dark-text bold-text">
@@ -133,7 +155,7 @@ const NewDogParkForm = props => {
                         type="checkbox"
                         name="hasBags"
                         onChange={handleInputChange}
-                        checked={newDogPark.hasBags}
+                        checked={editedDogPark.hasBags}
                     />
                 </label>
                 <label className="dark-text bold-text">
@@ -143,7 +165,7 @@ const NewDogParkForm = props => {
                         type="checkbox"
                         name="hasFence"
                         onChange={handleInputChange}
-                        checked={newDogPark.hasFence}
+                        checked={editedDogPark.hasFence}
                     />
                 </label>
                 <label className="dark-text bold-text">
@@ -153,7 +175,7 @@ const NewDogParkForm = props => {
                         type="checkbox"
                         name="hasWater"
                         onChange={handleInputChange}
-                        checked={newDogPark.hasWater}
+                        checked={editedDogPark.hasWater}
                     />
                 </label>
                 <label className="dark-text bold-text">
@@ -163,13 +185,13 @@ const NewDogParkForm = props => {
                         type="checkbox"
                         name="hasBenches"
                         onChange={handleInputChange}
-                        checked={newDogPark.hasBenches}
+                        checked={editedDogPark.hasBenches}
                     />
                 </label>
-                <input className="form-button-dark" type="submit" value="Submit" />
+                <input className="form-button-dark" type="submit" value="Submit Changes" />
 
             </form>
         </div>
     )
 }
-export default NewDogParkForm
+export default EditDogParkForm
