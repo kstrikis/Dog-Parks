@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import ErrorList from "./layout/ErrorList"
 import { Redirect } from "react-router-dom"
+import cleanUserInput from "../../../server/src/services/cleanUserInput"
 
 const EditDogParkForm = props => {
 
     const parkId = props.match.params.id
 
-    
     const defaultDogPark = {
         name: "",
         description: "",
@@ -22,7 +22,7 @@ const EditDogParkForm = props => {
     
     const [editedDogPark, setEditedDogPark] = useState(defaultDogPark)
     const [errors, setErrors] = useState([])
-    const [shouldRedirect, setShouldRedirect] = useState(false)
+    const [shouldRedirectShow, setShouldRedirectShow] = useState(false)
 
     const getExistingParkData = async (parkId) => {
         try {
@@ -43,9 +43,9 @@ const EditDogParkForm = props => {
         getExistingParkData(parkId)
     }, [])
 
-    const postEditedDogPark = async () => {
+    const patchEditedDogPark = async () => {
         try {
-            const response = await patch("/api/v1/parks", {
+            const response = await fetch(`/api/v1/parks/${parkId}`, {
                 method: "PATCH",
                 headers: new Headers({
                     "Content-Type": "application/json"
@@ -62,7 +62,7 @@ const EditDogParkForm = props => {
                     throw new Error(errorMessage)
                 }
             } else {
-                setShouldRedirect(true)
+                setShouldRedirectShow(true)
             }
         } catch(err) {
             console.error("Error in fetch", err.message)
@@ -86,11 +86,11 @@ const EditDogParkForm = props => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        postEditedDogPark()
+        patchEditedDogPark()
     }
 
-    if(shouldRedirect) {
-        return <Redirect push to="/" />
+    if(shouldRedirectShow) {
+        return <Redirect push to={`/parks/${parkId}`} />
     }
 
     return (
