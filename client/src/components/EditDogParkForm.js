@@ -5,7 +5,6 @@ import { Redirect } from "react-router-dom"
 import cleanUserInput from "../../../server/src/services/cleanUserInput"
 
 const EditDogParkForm = props => {
-
     const parkId = props.match.params.id
 
     const defaultDogPark = {
