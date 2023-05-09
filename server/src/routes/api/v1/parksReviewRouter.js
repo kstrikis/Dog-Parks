@@ -26,4 +26,14 @@ parksReviewRouter.post("/", async (req, res) => {
     }
 })
 
+parksReviewRouter.delete("/:reviewId", async (req, res) => {
+    const { reviewId } = req.params
+    try {
+        await Review.query().deleteById(reviewId)
+        res.status(200).json( {message: "Review deleted"} )
+    } catch(err) {
+        res.status(500).json( {errors: err.message} )
+    }
+})
+
 export default parksReviewRouter

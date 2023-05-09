@@ -14,6 +14,11 @@ const DogParkShow = (props) => {
     const [shouldRedirect, setShouldRedirect] = useState(false)
 
     const parkId = props.match.params.id
+
+    let isAdmin = false
+    if (props.user) {
+        isAdmin = props.user.isAdmin
+    }
     
     const getPark = async() => {
         try {
@@ -34,9 +39,48 @@ const DogParkShow = (props) => {
         return <p className="tag-cloud-individual-tag">{tag}</p>
     })
 
+    const deleteReview = async (reviewId) => {
+        try {
+            const response = await fetch(`/api/v1/parks/${parkId}/reviews/${reviewId}`, { method: "DELETE"})
+            if(!response.ok) {
+                const errorMessage = `${response.status} (${response.statusText})`
+                const error = new Error(errorMessage)
+                throw error
+            }
+            const newReviews = park.reviews.filter(review => {
+                return (review.id !== reviewId)
+            })
+            setPark({...park, reviews: newReviews })
+        } catch (err) {
+            console.error(`Error in fetch: ${err.message}`)
+        }
+    }
+
+    const handleOnClickDeleteReview = (event, reviewId) => {
+        event.preventDefault()
+        deleteReview(reviewId)
+    }
+
     const reviewsList = park.reviews.map(review => {
+        let userId = null
+        if (props.user) {
+            userId = props.user.id
+        }
+        let deleteButton = ""
+        if (isAdmin || review.userId === userId) {
+            deleteButton =
+                <button
+                    className="button"
+                    onClick={(event) => {
+                    handleOnClickDeleteReview(event, review.id)}}>
+                        Delete review
+                </button>
+        }
         return (
-            <ReviewTile key={review.id} {...review}/>
+            <>
+                <ReviewTile key={review.id} {...review}/>
+                {deleteButton}
+            </>
         )
     })
 
@@ -58,7 +102,7 @@ const DogParkShow = (props) => {
         }
     }
 
-    const handleOnClickDelete = (event) => {
+    const handleOnClickDeletePark = (event) => {
         event.preventDefault()
         deletePark()
     }
@@ -67,10 +111,6 @@ const DogParkShow = (props) => {
         return <Redirect push to="/" />
     } 
 
-    let isAdmin = false
-    if (props.user) {
-        isAdmin = props.user.isAdmin
-    }
     let classHide = "hide"
     if (isAdmin) {
         classHide = ""
@@ -82,7 +122,7 @@ const DogParkShow = (props) => {
             <div className="grid-y align-left">
                 <div className="title-group">
                     <h1>{park.name}</h1>
-                    <button onClick={handleOnClickDelete} className={`button ${classHide}`}>{isAdmin && message}</button>
+                    <button onClick={handleOnClickDeletePark} className={`button ${classHide}`}>{isAdmin && message}</button>
                 </div>
                 <div className="dog-parks-information">
                     <p>{park.address}</p>

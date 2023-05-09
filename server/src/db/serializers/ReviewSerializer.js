@@ -13,7 +13,8 @@ class ReviewSerializer {
                 id: review.id,
                 reviewText: review.reviewText,
                 rating: review.rating,
-                userName: username
+                userName: username,
+                userId: userId
             }
         }))
         return newReviews
@@ -28,7 +29,8 @@ class ReviewSerializer {
             id: review.id,
             reviewText: review.reviewText,
             rating: review.rating,
-            userName: username
+            userName: username,
+            userId: userId
         }
     }
 }
