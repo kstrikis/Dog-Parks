@@ -72,9 +72,8 @@ dogParksRouter.patch("/:id", async (req, res) => {
     try {
         const { body } = req
         const cleanedInput = cleanUserInput(body.park)
-        const editedPark = await DogPark.query().patchAndFetchById(id, cleanedInput)
-        const serializedPark = await DogParksSerializer.detailsForShow(editedPark)
-        return res.status(200).json({ park: serializedPark })
+        await DogPark.query().patchAndFetchById(id, cleanedInput)
+        return res.status(200).json({ message: "Dog park successfully edited" })
     } catch(err) {
         if (err instanceof ValidationError) {
             res.status(422).json({ errors: err.data })
