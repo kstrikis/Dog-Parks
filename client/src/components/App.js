@@ -11,6 +11,7 @@ import DogParksList from "./DogParksList";
 import DogParkShow from "./DogParkShow";
 import NewDogParkForm from "./NewDogParkForm";
 import EditDogParkForm from "./EditDogParkForm";
+import Home from "./Home";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -31,7 +32,8 @@ const App = (props) => {
     <Router>
       <TopBar user={currentUser} />
       <Switch>
-        <Route exact path="/" component={DogParksList} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/parks" component={DogParksList} />
         <Route exact path="/parks/new" component={NewDogParkForm} />
         <Route exact path="/parks/:id/edit" render={(props) => <EditDogParkForm {...props} user={currentUser} />} />

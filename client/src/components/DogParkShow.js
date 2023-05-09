@@ -14,6 +14,13 @@ const DogParkShow = (props) => {
     const [shouldRedirect, setShouldRedirect] = useState(false)
 
     const parkId = props.match.params.id
+
+    let isAdmin = false
+    let classHideSignedOutUser = "hide"
+    if (props.user) {
+        isAdmin = props.user.isAdmin
+        classHideSignedOutUser = ""
+    }
     
     const getPark = async() => {
         try {
@@ -34,9 +41,33 @@ const DogParkShow = (props) => {
         return <p className="tag-cloud-individual-tag">{tag}</p>
     })
 
+    const deleteReview = async (reviewId) => {
+        try {
+            const response = await fetch(`/api/v1/reviews/${reviewId}`, { method: "DELETE"})
+            if(!response.ok) {
+                const errorMessage = `${response.status} (${response.statusText})`
+                const error = new Error(errorMessage)
+                throw error
+            }
+            const newReviews = park.reviews.filter(review => {
+                return (review.id !== reviewId)
+            })
+            setPark({...park, reviews: newReviews })
+        } catch (err) {
+            console.error(`Error in fetch: ${err.message}`)
+        }
+    }
+
+    const handleOnClickDeleteReview = (event, reviewId) => {
+        event.preventDefault()
+        deleteReview(reviewId)
+    }
+
     const reviewsList = park.reviews.map(review => {
+        const currentUser = props.user
+
         return (
-            <ReviewTile key={review.id} {...review}/>
+            <ReviewTile key={review.id} {...review} currentUser={currentUser} isAdmin={isAdmin} handleOnClickDeleteReview={handleOnClickDeleteReview}/>
         )
     })
 
@@ -58,7 +89,7 @@ const DogParkShow = (props) => {
         }
     }
 
-    const handleOnClickDelete = (event) => {
+    const handleOnClickDeletePark = (event) => {
         event.preventDefault()
         deletePark()
     }
@@ -66,13 +97,7 @@ const DogParkShow = (props) => {
     if (shouldRedirect) {
         return <Redirect push to="/" />
     } 
-    
-    let isAdmin = false
-    let classHideSignedOutUser = "hide"
-    if (props.user) {
-        isAdmin = props.user.isAdmin
-        classHideSignedOutUser = ""
-    }
+
     let classHideNotAdmin = "hide"
     if (isAdmin) {
         classHideNotAdmin = ""
@@ -84,7 +109,7 @@ const DogParkShow = (props) => {
             <div className="grid-y align-left">
                 <div className="title-group">
                     <h1>{park.name}</h1>
-                    <button onClick={handleOnClickDelete} className={`button ${classHideNotAdmin}`}>{isAdmin && message}</button>
+                    <button onClick={handleOnClickDeletePark} className={`button ${classHideNotAdmin}`}>{isAdmin && message}</button>
                 </div>
                 <div className="dog-parks-information">
                     <p>{park.address}</p>
