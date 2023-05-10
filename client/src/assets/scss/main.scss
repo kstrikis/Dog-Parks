@@ -131,6 +131,10 @@ body {
   }
 }
 
+.hide-radio {
+  display: none
+}
+
 .top-text-custom {
   color: $dark-font-color;
   font-family: $master-font;
@@ -225,8 +229,13 @@ body {
   }
 }
 
-.unchecked {
-  color: $color-green-gray
+.same-line {
+  display: inline-flex
+}
+
+.home-page-icon {
+  font-size: 50px;
+  margin: 7px;
 }
 
 .left-margin {
@@ -303,3 +312,33 @@ body {
     border-color: $color-brighter-green;
   }
 }
+
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  }
+  .rating > input{
+   display:none;
+  }
+  // .rating > label {
+  // position: relative;
+  // width: 1.1em;
+  // font-size: 15vw;
+  // color: $color-brighter-green;
+  // cursor: pointer;
+  // }
+  .rating > label::before{
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+  }
+  .rating > label:hover:before,
+  .rating > label:hover ~ label:before {
+  opacity: 1 !important;
+  }
+  .rating > input:checked ~ label:before{
+  opacity:1;
+  }
+

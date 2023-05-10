@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import ErrorList from "./layout/ErrorList"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 
 const NewParkReviewForm = (props) => {
     const parkId = props.parkId
@@ -10,6 +13,9 @@ const NewParkReviewForm = (props) => {
     }
     const [newReview, setNewReview] = useState(defaultReview)
     const [errors, setErrors] = useState([])
+
+    const checkedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={solidStar} />
+    const uncheckedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={thinStar} />
 
     const postNewParkReview = async () => {
         try {
@@ -57,21 +63,33 @@ const NewParkReviewForm = (props) => {
         setNewReview(defaultReview)
     }
 
+    const handleStarClick = (event) => {
+        const ratingValue = event.currentTarget.value
+        setNewReview({
+          ...newReview,
+          rating: ratingValue
+        })
+      }
+
+    console.log(newReview.rating)
+
     return (
         <div className="review-form">
             <h1 className="list-link form-header-text">Add a New Review</h1>
             <ErrorList errors={errors}/>
             <form onSubmit={handleSubmit} >
-                <label className="dark-text bold-text">
-                    Rating:
-                    <input
-                        className="form-field-input left-margin"
-                        type="integer"
-                        name="rating"
-                        onChange={handleInputChange}
-                        value={newReview.rating}
-                    />
-                </label>              
+                <div className="rating">
+                    <input className="hide-radio" type="radio" id="star5" name="rating" value="5" onChange={handleStarClick}/>
+                    <label htmlFor="star5">{uncheckedIcon}</label>
+                    <input className="hide-radio" type="radio" id="star4" name="rating" value="4" onChange={handleStarClick}/>
+                    <label htmlFor="star4">{uncheckedIcon}</label>
+                    <input className="hide-radio" type="radio" id="star3" name="rating" value="3" onChange={handleStarClick}/>
+                    <label htmlFor="star3">{uncheckedIcon}</label>
+                    <input className="hide-radio" type="radio" id="star2" name="rating" value="2" onChange={handleStarClick}/>
+                    <label htmlFor="star2">{uncheckedIcon}</label>
+                    <input className="hide-radio" type="radio" id="star1" name="rating" value="1" onChange={handleStarClick}/>
+                    <label htmlFor="star1">{uncheckedIcon}</label>    
+                </div>
                 <label className="dark-text bold-text">
                     Review:
                     <input

@@ -1,12 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
+
 
 
 const ReviewTile = ({ reviewText, userName, rating }) => {
 
-    const checkedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={faPawSolid} />
-    const uncheckedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={faPawRegular} />
+    const checkedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={solidStar} />
+    const uncheckedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={thinStar} />
 
     let iconRatingArray = []
     const getRating = (rating) => {
