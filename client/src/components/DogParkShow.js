@@ -13,6 +13,7 @@ const DogParkShow = (props) => {
         reviews: []
     })
     const [shouldRedirect, setShouldRedirect] = useState(false)
+    const [shouldRedirectEdit, setShouldRedirectEdit] = useState(false)
 
     const parkId = props.match.params.id
 
@@ -97,22 +98,35 @@ const DogParkShow = (props) => {
         deletePark()
     }
 
+    const handleOnClickEditPark = (event) => {
+        event.preventDefault()
+        setShouldRedirectEdit(true)
+    }
+    
+    if (shouldRedirectEdit) {
+        return <Redirect push to={`/parks/${parkId}/edit`} />
+    } 
+
     if (shouldRedirect) {
-        return <Redirect push to="/" />
+        return <Redirect push to="/parks" />
     } 
 
     let classHideNotAdmin = "hide"
     if (isAdmin) {
         classHideNotAdmin = ""
     }
-    const message = "Delete this dog park"
+    const deleteMessage = "Delete this dog park"
+    const editMessage = "Edit this dog park"
 
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
                 <div className="same-line">
                     <h1 className="park-show-header">{park.name}</h1>
-                    <button onClick={handleOnClickDeletePark} className={`delete-button-dark right-side${classHideNotAdmin}`}>{isAdmin && message}</button>
+                    <div className="button-group">
+                        <button onClick={handleOnClickDeletePark} className={`delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && deleteMessage}</button>
+                        <button onClick={handleOnClickEditPark} className={`delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && editMessage}</button>
+                    </div>
                 </div>
                 <div className="dog-parks-information-section">
                     <p className="address-bold">{park.address}</p>
