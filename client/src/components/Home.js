@@ -12,6 +12,7 @@ const Home = (props) => {
                 <FontAwesomeIcon className="home-page-icon" icon={faPaw}/>
             </div> 
             <p>Find, visit and review local dog parks.</p>
+            <img src="s3://dog-parks-production/IMG_1303.jpg"/> 
         </div>
     )
 }

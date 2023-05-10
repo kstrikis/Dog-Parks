@@ -12,7 +12,8 @@ class Review extends Model {
                 reviewText: { type: "string", minLength: 20 },
                 rating: { type: ["integer", "string"] },
                 dogParkId: { type: ["integer", "string"]},
-                userId: { type: ["integer", "string"] }
+                userId: { type: ["integer", "string"] },
+                imageUrl: { type: "string" }
             }
         }
     }
