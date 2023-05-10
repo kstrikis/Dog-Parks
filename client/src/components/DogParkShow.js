@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
 import ReviewTile from "./ReviewTile"
 import NewParkReviewForm from "./NewParkReviewForm"
+import { format } from 'date-fns'
 
 const DogParkShow = (props) => {
     const [park, setPark] = useState({
@@ -71,6 +72,8 @@ const DogParkShow = (props) => {
         )
     })
 
+    const formattedDate = format(new Date(park.updatedAt), 'MMMM DD, YYYY')
+
     useEffect(() => {
         getPark()
     }, [])
@@ -107,25 +110,25 @@ const DogParkShow = (props) => {
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
-                <div className="title-group">
-                    <h1>{park.name}</h1>
-                    <button onClick={handleOnClickDeletePark} className={`button ${classHideNotAdmin}`}>{isAdmin && message}</button>
+                <div className="same-line">
+                    <h1 className="park-show-header">{park.name}</h1>
+                    <button onClick={handleOnClickDeletePark} className={`delete-button-dark right-side${classHideNotAdmin}`}>{isAdmin && message}</button>
                 </div>
-                <div className="dog-parks-information">
-                    <p>{park.address}</p>
-                    <p>{park.description}</p>
+                <div className="dog-parks-information-section">
+                    <p className="address-bold">{park.address}</p>
+                    <p className="dog-parks-description">{park.description}</p>
                 </div>
-                <div className="tag-cloud">
+                <div className="tag-cloud dog-parks-information-section">
                     {parkTags}
                 </div>
-                <div className="dog-parks-information">
-                    <p className="date-text">Last Updated: {park.updatedAt}</p>
+                <div className="dog-parks-information-section">
+                    <p className="date-text">Last Updated: {formattedDate}</p>
                 </div>
                 <div className={classHideSignedOutUser}>
                     <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
                 </div>
                 <div className="show-page-reviews">
-                    <h3>Review List</h3>
+                    <h3 className="review-list-header">Review List</h3>
                     {reviewsList} 
                 </div>
             </div>

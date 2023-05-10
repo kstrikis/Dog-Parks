@@ -36,10 +36,10 @@ const TopBar = ({ user }) => {
       <div className="top-bar-left">
         <ul className="menu top-text-custom">
           <li>
-            <Link to="/home" className="top-text-custom">Home</Link>
+            <Link to="/home" className="sign-in-button-top-nav top-text-custom">Home</Link>
           </li>
           <li>
-            <Link to="/parks" className="top-text-custom">Dog Parks</Link>
+            <Link to="/parks" className="sign-in-button-top-nav top-text-custom">Dog Parks</Link>
           </li>
         </ul>
       </div>

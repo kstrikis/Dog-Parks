@@ -9,19 +9,19 @@ const ReviewTile = ({ id, reviewText, rating, userName, userId, currentUser, isA
     if (isAdmin || currentUserId === userId) {
         deleteButton =
             <button
-                className="button"
+                className="delete-button-dark"
                 onClick={(event) => {
                 handleOnClickDeleteReview(event, id)}}>
                     Delete review
             </button>
     }
     return (
-        <>
-            <h4>{userName}'s Review</h4>
-            <p>{reviewText}</p>
-            <p>Rating: {rating}</p>
+        <div className="review-callout callout">
+            <h4 className="review-tile-header">{userName}'s Review</h4>
+            <p className="review-tile-text">{reviewText}</p>
+            <p className="review-tile-text">Rating: {rating}</p>
             {deleteButton}
-        </>
+        </div>
     )
 }
 
