@@ -31,17 +31,21 @@ const DogParksList = props => {
     })
     
     return (
-        <div className="dog-parks-index">
-            <h3 className="center-text form-header-text">Dog Parks of Boston</h3>
-            <div className="grid-x">
-                <div className="dog-parks-list cell small-6">
-                    {parksList.slice(0, Math.ceil(parksList.length / 2))}
+        <div>
+            <div className="dog-parks-index">
+                <h3 className="center-text form-header-text">Dog Parks of Boston</h3>
+                <div className="grid-x">
+                    <div className="dog-parks-list cell small-6">
+                        {parksList.slice(0, Math.ceil(parksList.length / 2))}
+                    </div>
+                    <div className="dog-parks-list cell small-6">
+                        {parksList.slice(Math.ceil(parksList.length / 2))}
+                    </div>
                 </div>
-                <div className="dog-parks-list cell small-6">
-                    {parksList.slice(Math.ceil(parksList.length / 2))}
-                </div>
+                <div className="center-text">
+                    <Link className="add-park-link" to="/parks/new">Add a new Dog Park</Link>
             </div>
-            <Link className="add-park-link" to="/parks/new">Add a new Dog Park</Link>
+                </div>
         </div>
     )
 }

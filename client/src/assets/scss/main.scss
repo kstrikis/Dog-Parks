@@ -22,6 +22,7 @@ $master-font: 'Geneva';
 $light-font-color: white;
 $dark-font-color:$color-darker-green;
 $color-delete: rgb(215, 122, 122);
+$color-edit: rgb(137, 174, 239);
 
 body {
   background-color: $color-green-gray;
@@ -154,7 +155,7 @@ body {
   width: 30%;
   text-align: center;
   background-color: $color-green-gray;
-  margin: 3rem 0rem;
+  margin: 1rem 0rem 2rem 0rem;
   font-family: $master-font;
 }
 
@@ -178,9 +179,12 @@ body {
 }
 
 .dog-parks-information-section {
-  padding-left: 1em;
+  padding: 1em; 
   font-size: 16px;
   font-family: $master-font;
+  background-color: white;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
 }
 
 .address-bold {
@@ -213,6 +217,7 @@ body {
 .date-text {
   font-style: italic;
   font-size: 14px;
+  padding-top: 1rem
 }
 
 .dark-text{
@@ -254,6 +259,7 @@ body {
 
 .right-side {
   margin-left: auto;
+  margin-right: 1rem
 }
 
 .home-text {
@@ -312,6 +318,7 @@ body {
   width: 100%;
   padding: 1rem;
   transition: all ease .4s;
+  margin-bottom: 1em;
 
   &:hover {
     background-color: $color-brighter-green;
@@ -365,13 +372,24 @@ body {
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: 1px;
-  width: 25%;
+  width: 15%;
   padding: .5rem;
   transition: all ease .4s;
 
   &:hover {
     background-color: $color-delete;
     border-color: $color-delete;
+  }
+}
+
+.override-button-width {
+  width: 25%;
+}
+
+.override-button-color{
+  &:hover {
+    background-color: $color-edit;
+    border-color: $color-edit;
   }
 }
 
