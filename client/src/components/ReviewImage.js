@@ -32,6 +32,7 @@ const ReviewImage = (props) => {
         const addImage = async (event) => {
             event.preventDefault()
             const newImageBody = new FormData()
+            console.log(newImageBody)
             newImageBody.append("image", newImageFormData.image)
             try {
                 const response = await fetch("/api/v1/reviews/image", {
@@ -63,12 +64,11 @@ const ReviewImage = (props) => {
                     <section>
                         <div {...getRootProps()}>
                             <input {...getInputProps()} />
-                            <p>Upload Your Profile - drag 'n' drop or click to upload</p>
+                            <p>Add an Image to your Review - drag 'n' drop or click to upload</p>
                         </div>
                     </section>
                 )} 
             </Dropzone>
-            <input className="button" type="submit" value="Add" />
         </form>
         </div>
     )

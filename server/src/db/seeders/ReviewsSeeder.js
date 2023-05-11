@@ -25,7 +25,8 @@ class ReviewSeeder {
                 reviewText: "The Common is a great place to take your dog. There are so many friendly people and pets to play with",
                 rating: 5,
                 userId: exampleUser2.id,
-                dogParkId: dogParkExample2.id
+                dogParkId: dogParkExample2.id, 
+                imageUrl: "https://dog-parks-production.s3.amazonaws.com/IMG_1303.jpg"
             },
             {
                 reviewText: "Toomey Park sucks. It is one of the worst places in Cambridge",

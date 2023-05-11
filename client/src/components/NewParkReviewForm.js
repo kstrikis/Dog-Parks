@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import ErrorList from "./layout/ErrorList"
+import ReviewImage from "./ReviewImage"
 
 const NewParkReviewForm = (props) => {
     const parkId = props.parkId
     const defaultReview = {
         rating: "",
-        reviewText: ""
+        reviewText: "",
+        reviewImage: ""
     }
     const [newReview, setNewReview] = useState(defaultReview)
     const [errors, setErrors] = useState([])
@@ -82,8 +84,9 @@ const NewParkReviewForm = (props) => {
                         value={newReview.reviewText}
                     />
                 </label>
+                <ReviewImage/>
                 <input className="form-button-dark" type="submit" value="Submit" />
-            </form>
+            </form>    
         </div>
     )
 }

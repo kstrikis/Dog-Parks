@@ -67,7 +67,7 @@ const DogParkShow = (props) => {
 
     const reviewsList = park.reviews.map(review => {
         const currentUser = props.user
-
+console.log(review)
         return (
             <ReviewTile key={review.id} {...review} currentUser={currentUser} isAdmin={isAdmin} handleOnClickDeleteReview={handleOnClickDeleteReview}/>
         )
