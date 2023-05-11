@@ -27,6 +27,12 @@ class UsersSeeder {
             city: "Boston",
             cryptedPassword: "$2b$10$dTI6XoH6Q28hjl3AlaoOmOlo/Gcln0/Bstae.HYMG1mBSrmKU.c/a",
             isAdmin: true
+        },
+        {
+            email:"googleAPI@example.com",
+            userName: "Review From Google Maps",
+            cryptedPassword: "$2b$10$ufXaJnvmEaYp4pqCTnFcwO8oKqSEpKnMsTSvBUwDzW5NrStp6Koey",
+            isAdmin: false
         }]
         for (const user of users) {
             const inDB = await User.query().findOne( {userName: user.userName} )

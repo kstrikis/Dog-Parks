@@ -244,6 +244,10 @@ body {
   margin-left: 10px;
 }
 
+.right-margin-smaller {
+  margin-right: 5px
+}
+
 .right-margin {
   margin-right: 10px;
 }
@@ -315,6 +319,43 @@ body {
   }
 }
 
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > label {
+  position: relative;
+  width: 1.1em;
+  font-size: 28px;
+  color: $color-darker-green;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.rating > label::before {
+  content: "\2605";
+  position: absolute;
+  opacity: 0;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+  opacity: 1 !important;
+  width: 1.1em;
+  font-size: 28px;
+}
+
+.rating > input:checked ~ label:before {
+  opacity: 1;
+  width: 1.1em;
+}
+
 .delete-button-dark {
   border-radius: 30px;
   border: 1px solid $dark-font-color;
@@ -371,4 +412,23 @@ body {
   font-family: $master-font;
   font-size: 14px;
   color: $dark-font-color;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.text-box-review-form {
+    margin-top: 10px;
+    height: 175px;
+    font-size: 14pt;
+    word-break: break-word;
+}
+
+.small-margin-top {
+  margin-top: 20px;
+}
+
+.smaller-margin-top {
+  margin-top: 10px;
 }
