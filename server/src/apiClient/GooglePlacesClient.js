@@ -5,7 +5,7 @@ import DogPark from "../models/DogPark.js"
 class GooglePlacesClient {
     static async getOverview(placeId) {
         try {
-            const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=name,formatted_address,reviews,rating,geometry/location&key=${config.googleKey}`
+            const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,formatted_address,reviews,rating,geometry/location&key=${config.googleKey}`
             const apiResponse = await got(url)
             const responseBody = apiResponse.body.result
 
@@ -23,17 +23,20 @@ class GooglePlacesClient {
         try {
             const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${googlePlaceId}&fields=name,formatted_address,reviews,rating,geometry/location&key=${config.googleKey}`
             const apiResponse = await got(url)
-            const responseReviews = apiResponse.body.result.reviews
-
+            const parsedBody = await JSON.parse(apiResponse.body)
+            
+            const responseReviews = parsedBody.result.reviews
+            // console.log(responseReviews)
             const returnedReviews = []
             responseReviews.forEach(review => {
                 const returnedReview = {
                     rating: review.rating,
                     reviewText: review.text
                 }
-                returnedArrays.push(returnedReview)
+                if(returnedReview.reviewText.length > 20){
+                returnedReviews.push(returnedReview)
+                }
             })
-
             return returnedReviews
         } catch(err) {
             return { errors: err.message }
