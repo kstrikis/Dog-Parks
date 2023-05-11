@@ -12,9 +12,10 @@ const NewParkReviewForm = (props) => {
         reviewText: "",
         image: {}
     }
+    const defaultImageAddedText = "Add an Image to your Review - drag 'n' drop or click to upload"
     const [newReview, setNewReview] = useState(defaultReview)
     const [errors, setErrors] = useState([])
-    const [imageAdded, setImageAdded] = useState("Add an Image to your Review - drag 'n' drop or click to upload")
+    const [imageAdded, setImageAdded] = useState(defaultImageAddedText)
 
     const uncheckedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={thinStar} />
 
@@ -67,6 +68,7 @@ const NewParkReviewForm = (props) => {
 
     const clearForm = () => {
         setNewReview(defaultReview)
+        setImageAdded(defaultImageAddedText)
     }
 
     const handleImageUpload = (acceptedImage) => {
