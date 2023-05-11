@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar as solidStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 
-const ReviewTile = ({ id, reviewText, rating, userName, userId, currentUser, isAdmin, handleOnClickDeleteReview }) => {
+const ReviewTile = ({ id, reviewText, rating, imageUrl, userName, userId, currentUser, isAdmin, handleOnClickDeleteReview }) => {
     let currentUserId = null
     if (currentUser) {
         currentUserId = currentUser.id
@@ -17,6 +17,10 @@ const ReviewTile = ({ id, reviewText, rating, userName, userId, currentUser, isA
                 handleOnClickDeleteReview(event, id)}}>
                     Delete review
             </button>
+    }
+    let imageSection
+    if (imageUrl) {
+        imageSection = <img src={imageUrl}/>
     }
 
     const checkedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={solidStar} />
@@ -44,6 +48,7 @@ const ReviewTile = ({ id, reviewText, rating, userName, userId, currentUser, isA
             <h4 className="review-tile-header">{userTitle}</h4>
             <p className="review-tile-text">{reviewText}</p>
             <p className="review-tile-text">Rating: {getRating(rating)}</p>
+            <p>{imageSection}</p>
             {deleteButton}
         </div>
     )

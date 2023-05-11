@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import ErrorList from "./layout/ErrorList"
 import { Redirect } from "react-router-dom"
-import cleanUserInput from "../../../server/src/services/cleanUserInput"
 
 const EditDogParkForm = props => {
     const parkId = props.match.params.id

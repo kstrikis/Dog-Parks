@@ -14,7 +14,8 @@ class ReviewSerializer {
                 reviewText: review.reviewText,
                 rating: review.rating,
                 userName: username,
-                userId: userId
+                userId: userId,
+                imageUrl: review.imageUrl
             }
         }))
         return newReviews
@@ -30,7 +31,8 @@ class ReviewSerializer {
             reviewText: review.reviewText,
             rating: review.rating,
             userName: username,
-            userId: userId
+            userId: userId,
+            imageUrl: review.imageUrl
         }
     }
 }
