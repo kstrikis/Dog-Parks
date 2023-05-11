@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
 import ReviewTile from "./ReviewTile"
 import NewParkReviewForm from "./NewParkReviewForm"
+import { format } from 'date-fns'
 
 const DogParkShow = (props) => {
     const [park, setPark] = useState({
@@ -12,6 +13,7 @@ const DogParkShow = (props) => {
         reviews: []
     })
     const [shouldRedirect, setShouldRedirect] = useState(false)
+    const [shouldRedirectEdit, setShouldRedirectEdit] = useState(false)
 
     const parkId = props.match.params.id
 
@@ -81,6 +83,8 @@ const DogParkShow = (props) => {
         }
     })
 
+    const formattedDate = format(new Date(park.updatedAt), 'MMMM DD, YYYY')
+
     useEffect(() => {
         getPark()
     }, [])
@@ -104,32 +108,45 @@ const DogParkShow = (props) => {
         deletePark()
     }
 
+    const handleOnClickEditPark = (event) => {
+        event.preventDefault()
+        setShouldRedirectEdit(true)
+    }
+    
+    if (shouldRedirectEdit) {
+        return <Redirect push to={`/parks/${parkId}/edit`} />
+    } 
+
     if (shouldRedirect) {
-        return <Redirect push to="/" />
+        return <Redirect push to="/parks" />
     } 
 
     let classHideNotAdmin = "hide"
     if (isAdmin) {
         classHideNotAdmin = ""
     }
-    const message = "Delete this dog park"
+    const deleteMessage = "Delete this dog park"
+    const editMessage = "Edit this dog park"
 
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
-                <div className="title-group">
-                    <h1>{park.name}</h1>
-                    <button onClick={handleOnClickDeletePark} className={`button ${classHideNotAdmin}`}>{isAdmin && message}</button>
+                <div className="same-line">
+                    <h1 className="park-show-header">{park.name}</h1>
+                    <div className="button-group">
+                        <button onClick={handleOnClickDeletePark} className={`delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && deleteMessage}</button>
+                        <button onClick={handleOnClickEditPark} className={`delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && editMessage}</button>
+                    </div>
                 </div>
-                <div className="dog-parks-information">
-                    <p>{park.address}</p>
-                    <p>{park.description}</p>
+                <div className="dog-parks-information-section">
+                    <p className="address-bold">{park.address}</p>
+                    <p className="dog-parks-description">{park.description}</p>
                 </div>
-                <div className="tag-cloud">
+                <div className="tag-cloud dog-parks-information-section">
                     {parkTags}
                 </div>
-                <div className="dog-parks-information">
-                    <p className="date-text">Last Updated: {park.updatedAt}</p>
+                <div className="dog-parks-information-section">
+                    <p className="date-text">Last Updated: {formattedDate}</p>
                 </div>
                 <div className={classHideSignedOutUser}>
                     <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
@@ -137,11 +154,11 @@ const DogParkShow = (props) => {
                 <div className="show-page-reviews">
                     <div className="row grid-x">
                         <div className="small-6 columns end">
-                            <h3>Review List</h3>
+                            <h3 className="review-list-header">Review List</h3>
                             {reviewsListOrganic} 
                         </div>
                         <div className="small-6 columns end">
-                            <h3>Reviews from Google Maps</h3>
+                            <h3 className="review-list-header">Reviews from Google Maps</h3>
                             {reviewsListGoogle} 
                         </div>
                     </div>

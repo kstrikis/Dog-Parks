@@ -43,6 +43,17 @@ class DogParksSerializer {
 
         return newPark
     }
+
+    static async detailsForEdit(dogPark) {
+        const allowedAttributes = ["id", "name", "address", "description", "neighborhood", "hasTrash", "hasBenches", "hasWater", "hasFence", "hasBags"]
+
+        let newPark = {}
+        for (const attribute of allowedAttributes) {
+            newPark[attribute] = dogPark[attribute]
+        }
+
+        return newPark
+    }
 }   
 
 export default DogParksSerializer
