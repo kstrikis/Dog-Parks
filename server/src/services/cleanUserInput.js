@@ -1,6 +1,6 @@
 const cleanUserInput = formInput => {
     Object.keys(formInput).forEach(field => {
-        if(formInput[field] === "") {
+        if(formInput[field] === "" || formInput[field] === null) {
             delete formInput[field]
         }
     })
