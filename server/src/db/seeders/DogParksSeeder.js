@@ -1,23 +1,7 @@
 import { DogPark } from "../../models/index.js"
-import { Client } from "@googlemaps/google-maps-services-js"
-import configuration from "../../config.js"
 
 class DogParksSeeder {
-    static async fetchApiData() {
-        const response = await fetch("")
-        const responseBody = response.json()
-
-        const client = new Client({})
-
-        // get Google user ID
-        // get list of dog parks
-        //for each park, add to DB
-        // also get all reviews using that park's place ID
-        // add each review to DB associated with the park, and with the Google user
-    }
-
-    static async seed()
-    {
+    static async seed() {
         const dogParks = [{
             name: "Test Park 1",
             description: "This is a place to bring T-posed pups",

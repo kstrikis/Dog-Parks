@@ -1,16 +1,15 @@
 import got from "got"
 import config from "../config.js"
-import DogPark from "../models/DogPark.js"
 
 class GooglePlacesClient {
     static async getOverview(placeId) {
         try {
-            const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,formatted_address,reviews,rating,geometry/location&key=${config.googleKey}`
+            const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,formatted_address,reviews,rating,geometry/location,editorial_summary&key=${config.googleKey}`
             const apiResponse = await got(url)
-            const responseBody = apiResponse.body.result
-
+            const responseParsed = JSON.parse(apiResponse.body)
+            const responseBody = responseParsed.result
             let overview = "There is no description available for this park."
-            if (responseBody.editorial_summary) {
+            if (responseBody.editorial_summary !== undefined) {
                 overview = responseBody.editorial_summary.overview
             }
             return overview
@@ -24,17 +23,15 @@ class GooglePlacesClient {
             const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${googlePlaceId}&fields=name,formatted_address,reviews,rating,geometry/location&key=${config.googleKey}`
             const apiResponse = await got(url)
             const parsedBody = await JSON.parse(apiResponse.body)
-            
             const responseReviews = parsedBody.result.reviews
-            // console.log(responseReviews)
             const returnedReviews = []
             responseReviews.forEach(review => {
                 const returnedReview = {
                     rating: review.rating,
                     reviewText: review.text
                 }
-                if(returnedReview.reviewText.length > 20){
-                returnedReviews.push(returnedReview)
+                if (returnedReview.reviewText.length > 20) {
+                    returnedReviews.push(returnedReview)
                 }
             })
             return returnedReviews
@@ -48,17 +45,11 @@ class GooglePlacesClient {
             const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog%20park&inputtype=textquery&fields=formatted_address%2Cname&key=${config.googleKey}`
             const apiResponse = await got(url)
             const responseBody = await JSON.parse(apiResponse.body)
-            // console.log("get dog parks response body: ",responseBody)
-            // console.log("get dog parks response body keys: ",Object.keys(responseBody))
-            // console.log("get dog parks response body results: ",responseBody.html_attributions)
-            // console.log("get dog parks response body results: ",responseBody.results)
-
             const returnedParks = Promise.all(responseBody.results.map(async (park) => {
                 return {
                     name: park.name,
                     address: park.formatted_address,
-                    // description: this.getOverview(park.place_id),
-                    description: "There is no description available for this park.",
+                    description: await this.getOverview(park.place_id),
                     placeId: park.place_id
                 }
             }))
