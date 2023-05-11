@@ -335,7 +335,7 @@ body {
   font-size: 28px;
   color: $color-darker-green;
   cursor: pointer;
-  line-height:1;
+  line-height: 1;
 }
 
 .rating > label::before {
@@ -376,6 +376,7 @@ body {
 }
 
 .review-callout {
+
   &:hover {
     outline-width: .25rem;
     outline-style: solid;
@@ -413,21 +414,21 @@ body {
   color: $dark-font-color;
 }
 
-.center-text{
+.center-text {
   text-align: center;
 }
 
-.text-box-review-form{
+.text-box-review-form {
     margin-top: 10px;
-    height:175px;
-    font-size:14pt;
+    height: 175px;
+    font-size: 14pt;
     word-break: break-word;
 }
 
-.small-margin-top{
+.small-margin-top {
   margin-top: 20px;
 }
 
-.smaller-margin-top{
+.smaller-margin-top {
   margin-top: 10px;
 }

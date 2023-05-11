@@ -24,8 +24,8 @@ const ReviewTile = ({ id, reviewText, rating, userName, userId, currentUser, isA
 
     let iconRatingArray = []
     const getRating = (rating) => {
-        for(let i = 1; i<=5; i++){
-            if(i<=rating){
+        for (let i = 1; i<=5; i++) {
+            if (i<=rating) {
                 iconRatingArray.push(checkedIcon)
             } else {
                 iconRatingArray.push(uncheckedIcon)

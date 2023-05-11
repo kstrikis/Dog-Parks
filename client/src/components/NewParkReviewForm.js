@@ -77,16 +77,16 @@ const NewParkReviewForm = (props) => {
                 <label className="dark-text bold-text center-text">
                     Rating:
                     <div className="rating smaller-margin-top">
-                        <input type="radio" id="star5" name="rating" value="5" onChange={handleStarClick} checked={newReview.rating === "5"} key="star5" />
                         <label htmlFor="star5">{uncheckedIcon}</label>
-                        <input type="radio" id="star4" name="rating" value="4" onChange={handleStarClick} checked={newReview.rating === "4"} key="star4" />
+                        <input type="radio" id="star5" name="rating" value="5" onChange={handleStarClick} checked={newReview.rating === "5"} key="star5" />
                         <label htmlFor="star4">{uncheckedIcon}</label>
-                        <input type="radio" id="star3" name="rating" value="3" onChange={handleStarClick} checked={newReview.rating === "3"} key="star3" />
+                        <input type="radio" id="star4" name="rating" value="4" onChange={handleStarClick} checked={newReview.rating === "4"} key="star4" />
                         <label htmlFor="star3">{uncheckedIcon}</label>
-                        <input type="radio" id="star2" name="rating" value="2" onChange={handleStarClick} checked={newReview.rating === "2"} key="star2" />
+                        <input type="radio" id="star3" name="rating" value="3" onChange={handleStarClick} checked={newReview.rating === "3"} key="star3" />
                         <label htmlFor="star2">{uncheckedIcon}</label>
-                        <input type="radio" id="star1" name="rating" value="1" onChange={handleStarClick} checked={newReview.rating === "1"} key="star1" />
+                        <input type="radio" id="star2" name="rating" value="2" onChange={handleStarClick} checked={newReview.rating === "2"} key="star2" />
                         <label htmlFor="star1">{uncheckedIcon}</label>
+                        <input type="radio" id="star1" name="rating" value="1" onChange={handleStarClick} checked={newReview.rating === "1"} key="star1" />
                     </div>
                 </label>
                 <label className="dark-text bold-text small-margin-top">
