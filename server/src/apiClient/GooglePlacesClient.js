@@ -42,7 +42,7 @@ class GooglePlacesClient {
 
     static async getDogParks() {
         try {
-            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog%20park&inputtype=textquery&fields=formatted_address%2Cname&key=${config.googleKey}`
+            const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog%20park%20near%20Boston&inputtype=textquery&fields=formatted_address%2Cname&key=${config.googleKey}`
             const apiResponse = await got(url)
             const responseBody = await JSON.parse(apiResponse.body)
             const returnedParks = Promise.all(responseBody.results.map(async (park) => {

@@ -23,7 +23,7 @@ const DogParksList = props => {
 
     const parksList = dogParks.map(park => {
         return (
-            <div className="callout dog-parks-list-item">
+            <div className="callout dog-parks-list-item left-margin right-margin">
                 <Link className="list-link" to={`/parks/${park.id}`}> {`${park.name}`}</Link>
                 <p>{park.address}</p>
             </div>
@@ -32,8 +32,14 @@ const DogParksList = props => {
     
     return (
         <div className="dog-parks-index">
-            <div className="dog-parks-list">
-                {parksList}
+            <h3 className="center-text form-header-text">Dog Parks of Boston</h3>
+            <div className="grid-x">
+                <div className="dog-parks-list cell small-6">
+                    {parksList.slice(0, Math.ceil(parksList.length / 2))}
+                </div>
+                <div className="dog-parks-list cell small-6">
+                    {parksList.slice(Math.ceil(parksList.length / 2))}
+                </div>
             </div>
             <Link className="add-park-link" to="/parks/new">Add a new Dog Park</Link>
         </div>
