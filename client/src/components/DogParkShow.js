@@ -63,12 +63,22 @@ const DogParkShow = (props) => {
         deleteReview(reviewId)
     }
 
-    const reviewsList = park.reviews.map(review => {
+    const reviewsListOrganic = park.reviews.map(review => {
         const currentUser = props.user
+        if (review.userName !== "Review From Google Maps") {
+            return (
+                <ReviewTile key={review.id} {...review} currentUser={currentUser} isAdmin={isAdmin} handleOnClickDeleteReview={handleOnClickDeleteReview}/>
+            )
+        }
+    })
 
-        return (
-            <ReviewTile key={review.id} {...review} currentUser={currentUser} isAdmin={isAdmin} handleOnClickDeleteReview={handleOnClickDeleteReview}/>
-        )
+    const reviewsListGoogle = park.reviews.map(review => {
+        const currentUser = props.user
+        if (review.userName === "Review From Google Maps") {
+            return (
+                <ReviewTile key={review.id} {...review} currentUser={currentUser} isAdmin={isAdmin} handleOnClickDeleteReview={handleOnClickDeleteReview}/>
+            )
+        }
     })
 
     useEffect(() => {
@@ -125,8 +135,16 @@ const DogParkShow = (props) => {
                     <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
                 </div>
                 <div className="show-page-reviews">
-                    <h3>Review List</h3>
-                    {reviewsList} 
+                    <div className="row grid-x">
+                        <div className="small-6 columns end">
+                            <h3>Review List</h3>
+                            {reviewsListOrganic} 
+                        </div>
+                        <div className="small-6 columns end">
+                            <h3>Reviews from Google Maps</h3>
+                            {reviewsListGoogle} 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

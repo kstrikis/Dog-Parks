@@ -15,9 +15,15 @@ const ReviewTile = ({ id, reviewText, rating, userName, userId, currentUser, isA
                     Delete review
             </button>
     }
+
+    let userTitle =`${userName}'s Review`
+    if (userName === "Review From Google Maps") {
+        userTitle = "Google Review"
+    }
+
     return (
         <>
-            <h4>{userName}'s Review</h4>
+            <h4>{userTitle}</h4>
             <p>{reviewText}</p>
             <p>Rating: {rating}</p>
             {deleteButton}
