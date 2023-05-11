@@ -34,9 +34,14 @@ const ReviewTile = ({ id, reviewText, rating, userName, userId, currentUser, isA
         return iconRatingArray
     }
 
+    let userTitle =`${userName}'s Review`
+    if (userName === "Review From Google Maps") {
+        userTitle = "Google Review"
+    }
+
     return (
-        <div className="review-callout callout">
-            <h4 className="review-tile-header">{userName}'s Review</h4>
+        <div className="review-callout callout right-margin left-margin">
+            <h4 className="review-tile-header">{userTitle}</h4>
             <p className="review-tile-text">{reviewText}</p>
             <p className="review-tile-text">Rating: {getRating(rating)}</p>
             {deleteButton}
