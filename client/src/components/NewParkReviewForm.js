@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import ErrorList from "./layout/ErrorList"
-import ReviewImage from "./ReviewImage"
+import Dropzone from "react-dropzone"
 
 const NewParkReviewForm = (props) => {
     const parkId = props.parkId
     const defaultReview = {
         rating: "",
         reviewText: "",
-        reviewImage: ""
+        image: {}
     }
     const [newReview, setNewReview] = useState(defaultReview)
     const [errors, setErrors] = useState([])
+    const [imageAdded, setImageAdded] = useState("Add an Image to your Review - drag 'n' drop or click to upload")
 
     const postNewParkReview = async () => {
+        const newImageBody = new FormData()
+        newImageBody.append("rating", newReview.rating)
+        newImageBody.append("reviewText", newReview.reviewText)
+        newImageBody.append("image", newReview.image)
+
         try {
             const response = await fetch(`/api/v1/parks/${parkId}/reviews`, {
                 method: "POST",
                 headers: new Headers({
-                    "Content-Type": "application/json"
+                    "Accept": "image/jpeg"
                 }),
-                body: JSON.stringify( {review: newReview} )
+                body: newImageBody
             })
             if (!response.ok) {
                 if (response.status === 422) {
@@ -37,8 +43,8 @@ const NewParkReviewForm = (props) => {
                 ...props.park,
                 reviews: [...props.park.reviews, responseBody.review]
             })
-        } catch(error) {
-            console.error("Error in fetch", error.message)
+        } catch(err) {
+            console.error("Error in fetch", err)
         }
     }
 
@@ -57,6 +63,13 @@ const NewParkReviewForm = (props) => {
 
     const clearForm = () => {
         setNewReview(defaultReview)
+    }
+
+    const handleImageUpload = (acceptedImage) => {
+        setNewReview({
+            ...newReview, image:acceptedImage[0]
+        })
+        setImageAdded("Image added")
     }
 
     return (
@@ -84,9 +97,18 @@ const NewParkReviewForm = (props) => {
                         value={newReview.reviewText}
                     />
                 </label>
-                <ReviewImage/>
+                <Dropzone onDrop={handleImageUpload} >
+                    {({getRootProps, getInputProps}) => (
+                        <section>
+                            <div {...getRootProps()} >
+                                <input {...getInputProps()} />
+                                <p className="callout" >{imageAdded}</p>
+                            </div>
+                        </section>
+                    )} 
+                </Dropzone>
                 <input className="form-button-dark" type="submit" value="Submit" />
-            </form>    
+            </form>
         </div>
     )
 }

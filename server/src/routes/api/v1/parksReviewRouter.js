@@ -4,16 +4,21 @@ import objection from "objection"
 import { ValidationError } from "objection"
 import cleanUserInput from "../../../services/cleanUserInput.js"
 import ReviewSerializer from "../../../db/serializers/ReviewSerializer.js"
+import uploadImage from "../../../services/uploadImage.js"
 
 const parksReviewRouter = new express.Router({ mergeParams: true })
-parksReviewRouter.post("/", async (req, res) => {  
+parksReviewRouter.post("/", uploadImage.single("image"), async (req, res) => {  
     try {
         const { body } = req
-        const cleanedInput = cleanUserInput(body.review)
+        const imageUrl = req.file ? req.file.location : null
+        const bodyWithImageUrl = { ...body, imageUrl: imageUrl }
+        delete bodyWithImageUrl.image
+        const cleanedInput = cleanUserInput(bodyWithImageUrl)
         const userId = req.user.id
-        cleanedInput.userId = userId
         const { id } = req.params
+        cleanedInput.userId = userId
         cleanedInput.dogParkId = id
+
         const review = await Review.query().insertAndFetch(cleanedInput)
         const serializedReview = await ReviewSerializer.serializeReview(review)
         res.status(201).json({ review: serializedReview })
