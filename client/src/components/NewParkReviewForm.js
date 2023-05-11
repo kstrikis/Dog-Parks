@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import translateServerErrors from "../services/translateServerErrors"
 import ErrorList from "./layout/ErrorList"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar as thinStar } from "@fortawesome/free-regular-svg-icons";
 
 const NewParkReviewForm = (props) => {
     const parkId = props.parkId
@@ -10,6 +12,8 @@ const NewParkReviewForm = (props) => {
     }
     const [newReview, setNewReview] = useState(defaultReview)
     const [errors, setErrors] = useState([])
+
+    const uncheckedIcon = <FontAwesomeIcon className="right-margin-smaller" icon={thinStar} />
 
     const postNewParkReview = async () => {
         try {
@@ -57,26 +61,38 @@ const NewParkReviewForm = (props) => {
         setNewReview(defaultReview)
     }
 
+    const handleStarClick = (event) => {
+        const ratingValue = event.currentTarget.value
+        setNewReview({
+          ...newReview,
+          rating: ratingValue
+        })
+      }
+
     return (
         <div className="review-form">
             <h1 className="list-link form-header-text">Add a New Review</h1>
             <ErrorList errors={errors}/>
             <form onSubmit={handleSubmit} >
-                <label className="dark-text bold-text">
+                <label className="dark-text bold-text center-text">
                     Rating:
-                    <input
-                        className="form-field-input left-margin"
-                        type="integer"
-                        name="rating"
-                        onChange={handleInputChange}
-                        value={newReview.rating}
-                    />
-                </label>              
-                <label className="dark-text bold-text">
+                    <div className="rating smaller-margin-top">
+                        <label htmlFor="star5">{uncheckedIcon}</label>
+                        <input type="radio" id="star5" name="rating" value="5" onChange={handleStarClick} checked={newReview.rating === "5"} key="star5" />
+                        <label htmlFor="star4">{uncheckedIcon}</label>
+                        <input type="radio" id="star4" name="rating" value="4" onChange={handleStarClick} checked={newReview.rating === "4"} key="star4" />
+                        <label htmlFor="star3">{uncheckedIcon}</label>
+                        <input type="radio" id="star3" name="rating" value="3" onChange={handleStarClick} checked={newReview.rating === "3"} key="star3" />
+                        <label htmlFor="star2">{uncheckedIcon}</label>
+                        <input type="radio" id="star2" name="rating" value="2" onChange={handleStarClick} checked={newReview.rating === "2"} key="star2" />
+                        <label htmlFor="star1">{uncheckedIcon}</label>
+                        <input type="radio" id="star1" name="rating" value="1" onChange={handleStarClick} checked={newReview.rating === "1"} key="star1" />
+                    </div>
+                </label>
+                <label className="dark-text bold-text small-margin-top">
                     Review:
-                    <input
-                        className="form-field-input"
-                        type="text"
+                    <textarea
+                        className="form-field-input text-box-review-form"
                         name="reviewText"
                         onChange={handleInputChange}
                         value={newReview.reviewText}
