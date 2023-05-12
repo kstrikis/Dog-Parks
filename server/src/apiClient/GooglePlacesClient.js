@@ -6,7 +6,7 @@ class GooglePlacesClient {
         try {
             const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,formatted_address,reviews,rating,geometry/location,editorial_summary&key=${config.googleKey}`
             const apiResponse = await got(url)
-            const responseParsed = JSON.parse(apiResponse.body)
+            const responseParsed = await JSON.parse(apiResponse.body)
             const responseBody = responseParsed.result
             let overview = "There is no description available for this park."
             if (responseBody.editorial_summary !== undefined) {
@@ -45,11 +45,12 @@ class GooglePlacesClient {
             const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=dog%20park%20near%20Boston&inputtype=textquery&fields=formatted_address%2Cname&key=${config.googleKey}`
             const apiResponse = await got(url)
             const responseBody = await JSON.parse(apiResponse.body)
-            const returnedParks = Promise.all(responseBody.results.map(async (park) => {
+            const returnedParks = await Promise.all(responseBody.results.map(async (park) => {
+                const description = await this.getOverview(park.place_id)
                 return {
                     name: park.name,
                     address: park.formatted_address,
-                    description: await this.getOverview(park.place_id),
+                    description: description,
                     placeId: park.place_id
                 }
             }))
