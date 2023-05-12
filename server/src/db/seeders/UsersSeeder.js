@@ -5,27 +5,27 @@ class UsersSeeder {
     {
         const users = [{
             email: "user@example.com",
-            userName: "User1",
+            userName: "User 1",
             city: "Boston",
-            cryptedPassword: "$2b$10$5kzjcb2R/OwrvyQv.ZxumewkWmQFf0NBFsKoy0hhQ5SWUpOurRWba",
+            cryptedPassword: "$2b$10$F4RveUKzfarwWBZ2lpLUFeZolicDTUcNyv3h47L0R5n9s14UBHVXe",
         },
         {
             email: "hilary@example.com",
             userName: "Hilary",
-            city: "Boston",
-            cryptedPassword: "$2b$10$KtL2zMLDVGmsWnJz45WvyefP2vRUnyUUAIxh8zjk.DNAMOEs9gbr.",
+            city: "South Boston",
+            cryptedPassword: "$2b$10$carqr68sTvVNRCCeJYFcHOk98BjDL2w9fXuvoLzGOFE7fbb.U1A5a",
         },
         {
             email: "kriss@example.com",
             userName: "Kriss",
             city: "Cambridge",
-            cryptedPassword: "$2b$10$NMZ0xvCY36bUiK1iARY4duS0QsdJ4hnzgn.KYb3xz8ge.IaBow8li",
+            cryptedPassword: "$2b$10$vU6IjOelV625TTLJ9nGLoOCPGMp7aTiSLk0Jn3IuYkeRxclfFSRXm",
         },
         {
             email:"admin@example.com",
             userName: "Admin",
             city: "Boston",
-            cryptedPassword: "$2b$10$dTI6XoH6Q28hjl3AlaoOmOlo/Gcln0/Bstae.HYMG1mBSrmKU.c/a",
+            cryptedPassword: "$2b$10$/e2w4cfvcaWg9AFwQ5ouHOK/2.wvtmV1XOhzY/xZRJ5DCmu4cS63G",
             isAdmin: true
         },
         {

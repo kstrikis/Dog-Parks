@@ -68,7 +68,7 @@ const NewDogParkForm = props => {
     }
 
     if(shouldRedirect) {
-        return <Redirect push to="/" />
+        return <Redirect push to="/parks" />
     }
 
     return (

@@ -91,7 +91,7 @@ const NewParkReviewForm = (props) => {
             <h1 className="list-link form-header-text">Add a New Review</h1>
             <ErrorList errors={errors}/>
             <form onSubmit={handleSubmit} >
-                <label className="dark-text bold-text center-text">
+                <label className="dark-text bold-text center-text font-size">
                     Rating:
                     <div className="rating smaller-margin-top">
                         <input type="radio" id="star5" name="rating" value="5" onChange={handleStarClick} checked={newReview.rating === "5"} key="star5" />
@@ -106,7 +106,7 @@ const NewParkReviewForm = (props) => {
                         <label htmlFor="star1">{uncheckedIcon}</label>
                     </div>
                 </label>
-                <label className="dark-text bold-text small-margin-top">
+                <label className="dark-text bold-text small-margin-top font-size">
                     Review:
                     <textarea
                         className="form-field-input text-box-review-form"
@@ -120,7 +120,7 @@ const NewParkReviewForm = (props) => {
                         <section>
                             <div {...getRootProps()} >
                                 <input {...getInputProps()} />
-                                <p className="callout" >{imageAdded}</p>
+                                <p className="image-drop-section callout" >{imageAdded}</p>
                             </div>
                         </section>
                     )} 
