@@ -14,7 +14,7 @@ const Home = (props) => {
             <p>Find, visit and review local dog parks.</p>
             <img className="image-size" src="https://dog-parks-production.s3.amazonaws.com/IMG_1303.jpg"/> 
             <div className="home-page-footer-text">   
-                <p>Youk enjoying his favorite park!</p>
+                <p>Youk enjoying his <a href="/parks/1">favorite park!</a></p>
                 <p>Application by: Alex Nunan, Hilary Gould, Kriss Strikis, & Scrith Prosper</p>
             </div>
         </div>

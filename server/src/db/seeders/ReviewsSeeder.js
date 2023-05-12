@@ -7,19 +7,23 @@ class ReviewSeeder {
         const exampleUser3 = await User.query().findOne({ email: "kriss@example.com" })
         const dogParkExample1 = await DogPark.query().findOne( {name: "Thomas Park"} )
         const dogParkExample2 = await DogPark.query().findOne( {name: "Boston Common"} )
-        const dogParkExample3 = await DogPark.query().findOne( {name: "Toomey Park"} )
+        let dogParkExample3 = await DogPark.query().findOne( {name: "Dog Park at Toomey Park"} )
+        if (!dogParkExample3) {
+            dogParkExample3 = dogParkExample2
+        }
 
         const reviews = [{
                 reviewText: "My dog really likes this park, it is simple but fun for him",
                 rating: 4,
                 userId: exampleUser1.id,
-                dogParkId: dogParkExample1.id
+                dogParkId: dogParkExample1.id,
+                imageUrl: "https://dog-parks-production.s3.amazonaws.com/1683901185502"
             },
             {
                 reviewText: "This park is not great. There are no amenities and it is too plain for my taste",
                 rating: 1,
                 userId: exampleUser2.id,
-                dogParkId: dogParkExample1.id
+                dogParkId: dogParkExample3.id
             },
             {
                 reviewText: "The Common is a great place to take your dog. There are so many friendly people and pets to play with",
@@ -49,7 +53,7 @@ class ReviewSeeder {
                 imageUrl: "https://dog-parks-production.s3.amazonaws.com/1683901091424"
             },
             {
-                reviewText: "This is review 3 of Thomas Park in Cambridge.",
+                reviewText: "My dog loves Thomas Park in South Boston.",
                 rating: 3,
                 userId: exampleUser3.id,
                 dogParkId: dogParkExample1.id, 
@@ -102,7 +106,6 @@ class ReviewSeeder {
                 rating: 5,
                 userId: exampleUser2.id,
                 dogParkId: dogParkExample2.id, 
-                imageUrl: "https://dog-parks-production.s3.amazonaws.com/1683901185502"
             },
             {
                 reviewText: "This is review 2 of Boston Common.",

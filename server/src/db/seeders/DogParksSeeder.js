@@ -23,15 +23,6 @@ class DogParksSeeder {
             hasFence: false,
             hasWater: false,
             hasBenches: true
-
-        },
-        {
-            name: "Toomey Park",
-            description: "The City of Cambridge has partnered with the Cambridge Redevelopment Authority (CRA) to establish a temporary off-leash dog park at the CRA’s 3rd and Binney Street Civic Space located at 174 Binney Street. The dog park is scheduled to open on Monday, January 11, 2021 and be operational through Fall 2021 while park construction is underway.",
-            address: "242 Third St., Cambridge, MA 02141",
-            neighborhood: "Kendall Square",
-            hasFence: true,
-            hasWater: true
         }]
 
         for (const park of dogParks) {

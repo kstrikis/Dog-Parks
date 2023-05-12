@@ -14,11 +14,11 @@ class Seeder {
     console.log("Seeding dog parks...")
     await DogParksSeeder.seed()
     
-    console.log("Seeding reviews...")
-    await ReviewSeeder.seed()
-
     console.log("Seeding parks via Google Places API...")
     await GoogleApiParksSeeder.seed()
+    
+    console.log("Seeding reviews...")
+    await ReviewSeeder.seed()
     
     console.log("Done!")
     await connection.destroy()
