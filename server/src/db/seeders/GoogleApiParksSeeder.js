@@ -14,11 +14,11 @@ class GoogleApiParksSeeder {
                 let parkWithoutPlace = {...park}
                 delete parkWithoutPlace.placeId
                 const newPark = await DogPark.query().insertAndFetch(parkWithoutPlace)
-                if(reviews.length > 0) {
-                    reviews.map(async (review) => {
+                if(reviews.length > 0) { 
+                    await Promise.all(reviews.map(async (review) => {
                         const reviewToInsert = { ...review, userId: googleApiUserId }
                         await newPark.$relatedQuery("reviews").insert(reviewToInsert)
-                    })
+                    }))
                 }
             }
         }

@@ -41,4 +41,4 @@ https://localhost:3000
 ## Usage
 Navigate to https://localhost:3000
 
-![ScreenShot](https://dog-parks-production.s3.amazonaws.com/Screen+Shot+2023-05-12+at+11.54.29+AM.png)
+![ScreenShot](https://dog-parks-production.s3.amazonaws.com/1683912400355)
