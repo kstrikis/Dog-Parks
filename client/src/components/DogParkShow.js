@@ -125,29 +125,25 @@ const DogParkShow = (props) => {
     if (isAdmin) {
         classHideNotAdmin = ""
     }
-    const deleteMessage = "Delete this dog park"
-    const editMessage = "Edit this dog park"
+    const deleteMessage = "Delete Park"
+    const editMessage = "Edit Park"
 
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
-                <div className="same-line">
-                    <h1 className="park-show-header">{park.name}</h1>
-                    <div className="button-group">
-                        <button onClick={handleOnClickDeletePark} className={`delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && deleteMessage}</button>
-                        <button onClick={handleOnClickEditPark} className={`delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && editMessage}</button>
-                    </div>
-                </div>
                 <div className="dog-parks-information-section">
+                    <h1 className="park-show-header">{park.name}</h1>
                     <p className="address-bold">{park.address}</p>
                     <p className="dog-parks-description">{park.description}</p>
-                </div>
-                <div className="tag-cloud dog-parks-information-section">
-                    {parkTags}
-                </div>
-                <div className="dog-parks-information-section">
-                    <p className="date-text">Last Updated: {formattedDate}</p>
-                </div>
+                    <div className="tag-cloud">
+                        {parkTags}
+                    </div>
+                    <div className="row grid-x">
+                        <div className="date-text">Last Updated: {formattedDate}</div>
+                        <button onClick={handleOnClickEditPark} className={`override-button-color delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && editMessage}</button>
+                        <button onClick={handleOnClickDeletePark} className={`delete-button-dark ${classHideNotAdmin}`}>{isAdmin && deleteMessage}</button>
+                    </div>
+                </div> 
                 <div className={classHideSignedOutUser}>
                     <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
                 </div>

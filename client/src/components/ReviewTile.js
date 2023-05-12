@@ -12,7 +12,7 @@ const ReviewTile = ({ id, reviewText, rating, imageUrl, userName, userId, curren
     if (isAdmin || currentUserId === userId) {
         deleteButton =
             <button
-                className="delete-button-dark"
+                className="override-button-width delete-button-dark"
                 onClick={(event) => {
                 handleOnClickDeleteReview(event, id)}}>
                     Delete review

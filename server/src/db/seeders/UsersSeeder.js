@@ -5,25 +5,25 @@ class UsersSeeder {
     {
         const users = [{
             email: "user@example.com",
-            userName: "user1",
+            userName: "User 1",
             city: "Boston",
             cryptedPassword: "$2b$10$5kzjcb2R/OwrvyQv.ZxumewkWmQFf0NBFsKoy0hhQ5SWUpOurRWba",
         },
         {
             email: "hilary@example.com",
-            userName: "hilary",
-            city: "Boston",
+            userName: "Hilary",
+            city: "South Boston",
             cryptedPassword: "$2b$10$KtL2zMLDVGmsWnJz45WvyefP2vRUnyUUAIxh8zjk.DNAMOEs9gbr.",
         },
         {
             email: "kriss@example.com",
-            userName: "kriss",
+            userName: "Kriss",
             city: "Cambridge",
             cryptedPassword: "$2b$10$NMZ0xvCY36bUiK1iARY4duS0QsdJ4hnzgn.KYb3xz8ge.IaBow8li",
         },
         {
             email:"admin@example.com",
-            userName: "admin",
+            userName: "Admin",
             city: "Boston",
             cryptedPassword: "$2b$10$dTI6XoH6Q28hjl3AlaoOmOlo/Gcln0/Bstae.HYMG1mBSrmKU.c/a",
             isAdmin: true
