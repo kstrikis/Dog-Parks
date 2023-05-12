@@ -131,19 +131,19 @@ const DogParkShow = (props) => {
     return (
         <div className="dog-show-page">
             <div className="grid-y align-left">
-                    <div className="dog-parks-information-section">
-                        <h1 className="park-show-header">{park.name}</h1>
-                        <p className="address-bold">{park.address}</p>
-                        <p className="dog-parks-description">{park.description}</p>
+                <div className="dog-parks-information-section">
+                    <h1 className="park-show-header">{park.name}</h1>
+                    <p className="address-bold">{park.address}</p>
+                    <p className="dog-parks-description">{park.description}</p>
                     <div className="tag-cloud">
                         {parkTags}
                     </div>
-                        <div className="row grid-x">
-                            <div className="date-text">Last Updated: {formattedDate}</div>
-                            <button onClick={handleOnClickEditPark} className={`override-button-color delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && editMessage}</button>
-                            <button onClick={handleOnClickDeletePark} className={`delete-button-dark ${classHideNotAdmin}`}>{isAdmin && deleteMessage}</button>
-                        </div>
-                    </div> 
+                    <div className="row grid-x">
+                        <div className="date-text">Last Updated: {formattedDate}</div>
+                        <button onClick={handleOnClickEditPark} className={`override-button-color delete-button-dark right-side ${classHideNotAdmin}`}>{isAdmin && editMessage}</button>
+                        <button onClick={handleOnClickDeletePark} className={`delete-button-dark ${classHideNotAdmin}`}>{isAdmin && deleteMessage}</button>
+                    </div>
+                </div> 
                 <div className={classHideSignedOutUser}>
                     <NewParkReviewForm parkId={parkId} park={park} setPark={setPark}/>
                 </div>
