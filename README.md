@@ -1,6 +1,6 @@
-## Dog Parks
+## Parks for Paws
 
-Description: Welcome to Dog Parks! This app helps users find dog parks in their area and gives an overview of the features of the park and reviews from other users.
+Description: Welcome to our dog parks application, Parks for Paws! This app helps users find dog parks in their area and gives an overview of the features of the park and reviews from other users.
 
 ## Authors
 Alex Nunan, Hilary Gould, Kriss Strikis, Scrith Prosper
@@ -13,6 +13,7 @@ https://localhost:3000
 - Express
 - React
 - CSS
+- Font Awesome
 - Foundation Framework
 - AWS (S3)
 - Google Places API
@@ -28,8 +29,8 @@ At first clone from github to get the app up and running with these steps:
 - If needed, create an AWS Account at https://aws.amazon.com/?nc2=h_lg
 - In the Identity and Access Management dashboard, add a user, ensuring the user has programmatic access.
 - Pull the Access Key and Secret Access Key for this user, and add them to your .env file
-- Create a new s3 bucket and add the name to the env file after S3_BUCKET_PRODUCTION
-- Create a Google Workspace account and add your API Key to the env file after GOOGLE_MAPS_API_KEY
+- Create a new S3 bucket and add the name to the .env file after S3_BUCKET_PRODUCTION=
+- Create a Google Workspace account and add your API Key to the .env file after GOOGLE_MAPS_API_KEY=
 - Create a SESSION_SECRET using a UUID generator, e.g. https://www.uuidgenerator.net/
 - Back in the terminal, create the PostgreSQL database with : `createdb dog-parks_development`
 - Yarn install with this command before running your migrations : `yarn install` 
@@ -41,4 +42,4 @@ At first clone from github to get the app up and running with these steps:
 ## Usage
 Navigate to https://localhost:3000
 
-<< insert screenshot of index page >>
+![ScreenShot](https://dog-parks-production.s3.amazonaws.com/Screen+Shot+2023-05-12+at+11.54.29+AM.png)
