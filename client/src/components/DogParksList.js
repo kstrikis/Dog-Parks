@@ -44,8 +44,8 @@ const DogParksList = props => {
                 </div>
                 <div className="center-text">
                     <Link className="add-park-link" to="/parks/new">Add a new Dog Park</Link>
-            </div>
                 </div>
+             </div>
         </div>
     )
 }
